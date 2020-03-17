@@ -1,0 +1,39 @@
+html {
+    background-image: url(../../assets/login-background2.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+#logo {
+    padding: 0% 3%;
+}
+.nav-wrapper {
+    background-color: #8a3862;
+}
+.btn {
+    background-color: #8a3862;
+}
+.btn:link {
+    background-color: #8a3862;
+}
+.btn:visited {
+    background-color: #8a3862;
+}
+.btn:hover {
+    background-color: #d66da3;
+}
+.btn:active {
+    background-color: #d66da3;
+}
+form.signup,
+form.login {
+    margin-top: 50px;
+}
+.here {
+    color: #58c7d6;
+}
+.main {
+    margin-top: 8%;
+    border-style: solid;
+    border-color: #8a3862;
+}
