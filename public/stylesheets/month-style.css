@@ -1,0 +1,66 @@
+body {
+    font-family: "Abril Fatface", cursive;
+    font-size: 1.2em;
+    /* background: #ffe7e9
+        url("https://images.unsplash.com/photo-1456271390536-693558280c8f?dpr=1&auto=format&crop=entropy&fit=crop&w=1500&h=996&q=80&cs=tinysrgb")
+        no-repeat center center fixed;
+    background-size: cover; */
+    color: #ddd;
+}
+.datepicker {
+    width: 475px;
+    background: #fdfdfd;
+    border-radius: 10px;
+    box-shadow: 0 19px 38px rgba(0, 0, 0, 0.2), 0 15px 12px rgba(0, 0, 0, 0.2);
+    margin: 15px auto;
+    overflow: hidden;
+}
+
+.datepicker .ui-datepicker-header {
+    height: 250px;
+    /* background-image: url("https://images.unsplash.com/photo-1441205337478-70cb1521e35a?dpr=1&auto=format&crop=entropy&fit=crop&w=1500&h=1000&q=80&cs=tinysrgb"); */
+    background-size: 100%;
+}
+.datepicker .ui-datepicker-inline {
+    padding: 30px;
+}
+.datepicker .ui-datepicker-header {
+    text-align: center;
+    font-size: 1.4em;
+    padding-bottom: 0.5em;
+    letter-spacing: 0.1em;
+    color: #333;
+}
+.datepicker .ui-datepicker-calendar {
+    width: 100%;
+    text-align: center;
+}
+.datepicker .ui-datepicker-calendar a {
+    color: #333;
+    text-decoration: none;
+    display: block;
+    margin: 0 auto;
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    border-radius: 50%;
+    border: 1px solid transparent;
+}
+.datepicker .ui-datepicker-calendar .ui-state-highlight {
+    background: #58c7d6;
+    color: #fff;
+}
+.welcome {
+    font-size: 2.5vw;
+    text-align: center;
+    color: #8a3862;
+    margin: 3% 0% -3% 0%;
+}
+#daily-table {
+    padding-right: 7%;
+    color: black;
+}
+.input-field,
+#textarea1 {
+    margin: 0;
+}
