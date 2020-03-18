@@ -1,49 +1,49 @@
-CREATE DATABASE bullet_journal
-USE bullet_journal
-
---NOT WORKING DONT RUN PLEASE
-
-CREATE TABLE journal (
-    id INT NOT_NULL AUTO_INCREMENT, 
-    user REFERENCES user,   -- journal has one to one with user
-    posts REFERENCES posts, -- journal has many posts
-    index REFERENCES index, -- journal has one index
-    task REFERENCES task, -- journal has many tasks
-    monthly_spread REFERENCES monthly_spread, -- journal has many monthly spreads
-    daily_spread REFERENCES daily_spread, -- journal has many daily spreads
-
-)
+DROP DATABASE IF EXISTS bullet_journal;
+create database bullet_journal;
+USE bullet_journal;
 
 CREATE TABLE users (
-    id INT NOT_NULL AUTO_INCREMENT,
-    user VARCHAR NOT_NULL,
-    pw VARCHAR NOT_NULL,
+    id INT not NULL AUTO_INCREMENT,
+    users VARCHAR(30) not NULL,
+    pw VARCHAR(30) not NULL,
     PRIMARY KEY (id)
-)
+);
 
-CREATE TABLE index (
-    id INT NOT_NULL AUTO_INCREMENT,
-    name VARCHAR NOT_NULL,
+CREATE TABLE indexs (
+    id INT not NULL AUTO_INCREMENT,
+    name VARCHAR(30) not NULL,
     PRIMARY KEY (id)
-
-)
+);
 
 CREATE TABLE posts (
-    id INT NOT_NULL AUTO_INCREMENT,
-    title VARCHAR NOT_NULL,
-)
+    id INT not NULL AUTO_INCREMENT,
+    title VARCHAR(30) not NULL,
+    PRIMARY KEY(id)
+);
 
 CREATE TABLE tasks (
-    id INT NOT_NULL AUTO_INCREMENT,
-)
+    id INT not NULL AUTO_INCREMENT,
+    PRIMARY KEY(id)
+);
 
 CREATE TABLE monthly_spread (
-    id INT NOT_NULL AUTO_INCREMENT,
-    month VARCHAR NOT_NULL,
-)
+    id INT not NULL AUTO_INCREMENT,
+    monthz VARCHAR(30) not NULL,
+    PRIMARY KEY(id)
+);
 
-CREATE TABLE daily_spread (
-    id INT NOT_NULL AUTO_INCREMENT,
-    day VARCHAR NOT_NULL,
-)
+CREATE TABLE journal (
+    id INT not NULL AUTO_INCREMENT,
+    users INT NOT NULL REFERENCES users(id), 
+    posts INT NOT NULL REFERENCES posts(id),
+    indexs INT NOT NULL REFERENCES indexs(id),
+    tasks INT NOT NULL REFERENCES tasks(id),
+    monthly_spread INT NOT NULL REFERENCES monthly_spread(id),
+    daily_spread INT NOT NULL REFERENCES daily_spread(id),
+    PRIMARY KEY(id)
+);
+
+
+
+
 
