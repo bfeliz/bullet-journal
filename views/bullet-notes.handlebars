@@ -1,18 +1,103 @@
 {{!-- add styling here later --}}
-
-<div class="container">
-  <div class="row">
-    <h1>Daily Bullet Journal</h1>
+<h1>Daily Bullet Journal</h1>
     {{!-- insert Date here --}}
     <h2 class="date"></h2>
-  </div>
-    
-  <div class="row bullet-notes">
-    <ul>
-        <li>{{NOTES}}</li>
-    </ul>
+<ul>
+  {{#each daily_spread}}
+  <li>
+    <p>
+      {{this.id}}. {{this.day}}
 
-    {{!-- <input class="notes" placeholder="day bullet" maxlength="20" type="text"> --}}
-   
-  </div>
+      <button data-bulletid="{{this.id}}" class="delbullet">Delete</button>
+    </p>
+  </li>
+  {{/each}}
+</ul>
+
+<div class="row bullet-notes">
+
+    <h2>Create a Bullet</h2>
+        <form id="createbullet" class="button-size">
+            <textarea type="text" name="buletnote"></textarea>
+            <button type="submit">Save</button>
+        </form> 
+    <h2>Update Bullet</h2>
+        <form id="updatebullet" class="button-size">
+            <select name="id">
+		        {{#each daily_spread}}
+			        <option value="{{this.id}}">{{this.day}}</option>
+		        {{/each}}
+	        </select>
+            <textarea type="text" name="plan" ></textarea>
+            <button type="submit">Update</button>
+        </form>
 </div>
+
+
+<script type="text/javascript">
+  $(".delbullet").on("click", function(event) {
+    // Get the ID from the button.
+    // This is shorthand for $(this).attr("data-planid")
+    var id = $(this).data("bulletid");
+
+    // Send the DELETE request.
+    $.ajax("/api/daily_spread/" + id, {
+      type: "DELETE"
+    }).then(
+      function() {
+        console.log("deleted id ", id);
+        // Reload the page to get the updated list
+        location.reload();
+      }
+    );
+  });
+
+
+  $("#createbullet").on("submit", function(event) {
+    // Make sure to preventDefault on a submit event.
+    event.preventDefault();
+
+    // [name=bulletnote] will find an element with a "name" attribute equal to the string "bulletnote"
+    var newBN = {
+      plan: $("#createbullet [name=bulletnote]").val().trim()
+    };
+
+    // Send the POST request.
+    $.ajax("/api/daily_spread", {
+      type: "POST",
+      data: newBN
+    }).then(
+      function() {
+        console.log("created new bullet note");
+        // Reload the page to get the updated list
+        location.reload();
+      }
+    );
+  });
+
+  $("#updatebullet").on("submit", function(event) {
+    // Make sure to preventDefault on a submit event.
+    event.preventDefault();
+
+    // Get the ID by finding an element with a "name" attribute equal to the string "id"
+    var id = $("[name=id]").val().trim();
+
+    var updatedBN = {
+      plan: $("#updatebullet [name=plan]").val().trim()
+    };
+
+    // Send the PUT request.
+    $.ajax("/api/daily_spread/" + id, {
+      type: "PUT",
+      data: updatedBN
+    }).then(
+      function() {
+        console.log("updated id ", id);
+        // Reload the page to get the updated list
+        location.reload();
+      }
+    );
+  });
+
+
+</script>
