@@ -1,5 +1,4 @@
 $(document).ready(function() {
-    const $currentDaily = $(".currentDailies");
     // ---------------- MAIN HANDLEBARS NAVBAR ---------------
     // to run sidenav when on mobile or small screens
     $(".sidenav").sidenav();
@@ -146,22 +145,14 @@ const $currentDaily = $(".currentDailies")
 
 
 $('.newMonthly').on("click",function(e){
+    
     event.preventDefault()
-    const textarea =   
-    `<div class="input-field col s12">
+    const submitButton = `<a class="btn waves-effect waves-light center-align" type="submit" name="action">Ok</a>`
+    const textarea = `<div class="input-field col s12">
     <select>
       <option value="" disabled selected>Choose your option</option>
-      <option value="1">Option 1</option>
-      <option value="2">Option 2</option>
-      <option value="3">Option 3</option>
-    </select>
-    <label>Materialize Select</label>
-  </div>`
-
-$('.formRow').append(textarea)
-})
-}
-/* <option value="2">February</option>
+      <option value="1">January</option>
+      <option value="2">February</option>
 <option value="3">March</option>
 <option value="4">April</option>
 <option value="5">May</option>
@@ -171,4 +162,16 @@ $('.formRow').append(textarea)
 <option value="9">September</option>
 <option value="10">October</option>
 <option value="11">November</option>
-<option value="12">December</option> */
+<option value="12">December</option>
+    </select>
+    <label>Pick A Month</label>
+  </div>`
+    
+    $('.formRow').append(textarea)
+    $('.formRow').append(submitButton)
+    $('select').formSelect()
+})
+
+
+})
+/*  */
