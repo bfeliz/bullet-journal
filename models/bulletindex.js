@@ -14,11 +14,6 @@ module.exports = function (sequelize, DataTypes) {
                 allowNull: false
             }
         });
-        bulletIndex.hasMany(models.Daily, {
-            foreignKey: {
-                allowNull: false
-            }
-        });
         bulletIndex.hasMany(models.Monthly, {
             foreignKey: {
                 allowNull: false

@@ -1,10 +1,14 @@
 module.exports = function (sequelize, DataTypes) {
     var Monthly = sequelize.define("Monthly", {
         // The email cannot be null, and must be a proper email before creation
-        name: {
+        month: {
             type: DataTypes.STRING,
             allowNull: false,
             unique: true,
+        },
+        year: {
+            type: DataTypes.INTEGER,
+            allowNull: false,
         }
     })
     Monthly.associate = function (models) {
@@ -13,11 +17,11 @@ module.exports = function (sequelize, DataTypes) {
                 allowNull: false
             }
         })
-        Monthly.hasMany(models.Daily, {
-            foreignKey: {
-                allowNull: false
-            }
-        }) 
+        // Monthly.hasMany(models.Daily, {
+        //     foreignKey: {
+        //         allowNull: false
+        //     }
+        // }) 
 }
 return Monthly;
 }

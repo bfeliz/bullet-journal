@@ -47,7 +47,7 @@ defaultLayout: 'main'
 
 app.set("view engine", "handlebars");
 
-app.get("/members", isAuthenticated, function(req, res) {
+app.get("/monthly", isAuthenticated, function(req, res) {
   res.render("monthly", {
     dates: datesArray});
 });
@@ -56,9 +56,10 @@ app.get("/dailyspread", isAuthenticated, function(req, res) {
   res.render("bullet-notes");
 });
 
-app.get("/monthly", isAuthenticated, function(req, res) {
-res.render("monthly");  
+app.get("/members", isAuthenticated, function(req, res) {
+res.render("home");  
 });
+
 
 app.get("/habits", isAuthenticated, function(req, res) {
   res.render("habits");
