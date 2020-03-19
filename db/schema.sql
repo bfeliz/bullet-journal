@@ -1,6 +1,6 @@
-DROP DATABASE IF EXISTS bullet_journal;
-create database bullet_journal;
-USE bullet_journal;
+DROP DATABASE IF EXISTS passport_demo;
+create database passport_demo;
+USE passport_demo;
 
 CREATE TABLE users (
     id INT not NULL AUTO_INCREMENT,
