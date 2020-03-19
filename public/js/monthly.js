@@ -1,3 +1,4 @@
+
 $(document).ready(function() {
     // necessary to render calendar correctly
     $(".datepicker").datepicker({
