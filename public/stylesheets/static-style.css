@@ -3,6 +3,7 @@ html {
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
+    font-family: "Nanum Gothic", sans-serif;
 }
 #logo {
     padding: 0% 3%;
