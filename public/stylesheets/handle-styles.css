@@ -74,3 +74,7 @@ body {
 #textarea1 {
     margin: 0;
 }
+/* styling for collection.handlebars */
+#collect-bottom {
+    margin-bottom: 30%;
+}
