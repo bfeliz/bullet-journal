@@ -6,6 +6,16 @@ $(document).ready(function() {
 
     // ----------------------- MONTHLY ------------------------
     // necessary to render calendar correctly
+
+// ----------------------- SELECT------------------------
+    // necessary to render dropdown select menus correctly
+    $('select').formSelect();
+
+const $currentDaily = $(".currentDailies")
+
+
+
+   
     $(".datepicker").datepicker({
         prevText: '<i class="fa fa-fw fa-angle-left"></i>',
         nextText: '<i class="fa fa-fw fa-angle-right"></i>'
@@ -131,4 +141,34 @@ $(document).ready(function() {
     //       }
     //     );
     //   });
-});
+
+
+
+
+$('.newMonthly').on("click",function(e){
+    event.preventDefault()
+    const textarea =   
+    `<div class="input-field col s12">
+    <select>
+      <option value="" disabled selected>Choose your option</option>
+      <option value="1">Option 1</option>
+      <option value="2">Option 2</option>
+      <option value="3">Option 3</option>
+    </select>
+    <label>Materialize Select</label>
+  </div>`
+
+$('.formRow').append(textarea)
+})
+}
+/* <option value="2">February</option>
+<option value="3">March</option>
+<option value="4">April</option>
+<option value="5">May</option>
+<option value="6">June</option>
+<option value="7">July</option>
+<option value="8">August</option>
+<option value="9">September</option>
+<option value="10">October</option>
+<option value="11">November</option>
+<option value="12">December</option> */
