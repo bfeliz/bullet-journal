@@ -6,30 +6,15 @@
             </div>
         </div>
     </div>
+
+
     <div class="col s12 m12 l6" id="daily-table">
+        {{#each dates}}
         <div class="row">
             <div class="input-field col s12">
-                <textarea id="textarea1" class="materialize-textarea"></textarea>
-                <label for="textarea1">1</label>
+                <textarea id="textarea{{date}}" class="materialize-textarea"></textarea>
+                <label for="textarea{{date}}">{{date}}</label>
             </div>
         </div>
-        <div class="row">
-            <div class="input-field col s12">
-                <textarea id="textarea1" class="materialize-textarea"></textarea>
-                <label for="textarea1">2</label>
-            </div>
-        </div>
-        <div class="row">
-            <div class="input-field col s12">
-                <textarea id="textarea1" class="materialize-textarea"></textarea>
-                <label for="textarea1">3</label>
-            </div>
-        </div>
-        <div class="row">
-            <div class="input-field col s12">
-                <textarea id="textarea1" class="materialize-textarea"></textarea>
-                <label for="textarea1">4</label>
-            </div>
-        </div>
+        {{/each}}
     </div>
-</div>
