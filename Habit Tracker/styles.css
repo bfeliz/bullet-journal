@@ -1,0 +1,30 @@
+h1 {
+  margin: auto;
+}
+
+#grid-col {
+    display: grid;
+    grid-template-columns: auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto;
+    grid-gap: 5px;
+
+    /* scroll bar */
+    width: 60em;
+    overflow-x: auto;
+    white-space: nowrap;
+    margin: auto;
+
+    /* position */
+    position:absolute; 
+    left:0; right:0;
+    top:200; bottom:200px;
+    margin:auto;
+
+
+
+  }
+
+div.cell {
+    background: #948cb9;
+    border: 1px solid #aaa;
+    padding: 5px;
+  }
