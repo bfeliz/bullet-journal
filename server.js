@@ -4,6 +4,7 @@ var session = require("express-session");
 // Requiring passport as we've configured it
 var passport = require("./config/passport");
 var isAuthenticated = require("./config/middleware/isAuthenticated");
+var moment = require("moment")
 
 // Setting up port and requiring models for syncing
 var PORT = process.env.PORT || 8080;
@@ -28,13 +29,39 @@ require("./routes/api-routes.js")(app);
 
 
 // Set Handlebars.
-var exphbs = require("express-handlebars");
 
-app.engine("handlebars", exphbs({ defaultLayout: "main" }));
+const datesArray = []
+for (let i = 1; i < moment().daysInMonth() + 1; i++) {
+  datesArray.push({date: i})
+}
+var exphbs = require("express-handlebars");
+app.engine('handlebars', exphbs({
+  // helpers: {
+  //     daysOfMonth: function (context, options) { 
+  //       return percs
+       
+  //     }
+  // },
+defaultLayout: 'main'
+}));
+
 app.set("view engine", "handlebars");
 
 app.get("/members", isAuthenticated, function(req, res) {
-  res.render("monthly");
+  res.render("monthly", {
+    dates: datesArray});
+});
+
+app.get("/dailyspread", isAuthenticated, function(req, res) {
+  res.render("bullet-notes");
+});
+
+app.get("/monthly", isAuthenticated, function(req, res) {
+res.render("monthly");  
+});
+
+app.get("/habits", isAuthenticated, function(req, res) {
+  res.render("habits");
 });
 
 
@@ -93,6 +120,7 @@ app.delete("/api/daily_spread/:id", function(req, res) {
   });
 });
 
+module.exports = moment
 
 
 
