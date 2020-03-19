@@ -9,11 +9,7 @@ module.exports = function (sequelize, DataTypes) {
     })
 
     bulletIndex.associate = function (models) {
-        bulletIndex.hasMany(models.Tasks, {
-            foreignKey: {
-                allowNull: false
-            }
-        });
+      
         bulletIndex.hasMany(models.Monthly, {
             foreignKey: {
                 allowNull: false
