@@ -1,5 +1,5 @@
 body {
-    font-family: "Abril Fatface", cursive;
+    font-family: "Nanum Gothic", sans-serif;
     font-size: 1.2em;
     /* background: #ffe7e9
         url("https://images.unsplash.com/photo-1456271390536-693558280c8f?dpr=1&auto=format&crop=entropy&fit=crop&w=1500&h=996&q=80&cs=tinysrgb")
@@ -7,6 +7,17 @@ body {
     background-size: cover; */
     color: #ddd;
 }
+/* styling for main.handlebars */
+#logo {
+    padding: 0% 3%;
+}
+.nav-wrapper {
+    background-color: #8a3862;
+}
+#mobile-demo {
+    padding-top: 3%;
+}
+/* styling for monthly.handlebars */
 .datepicker {
     width: 475px;
     background: #fdfdfd;
@@ -15,7 +26,6 @@ body {
     margin: 15px auto;
     overflow: hidden;
 }
-
 .datepicker .ui-datepicker-header {
     height: 250px;
     /* background-image: url("https://images.unsplash.com/photo-1441205337478-70cb1521e35a?dpr=1&auto=format&crop=entropy&fit=crop&w=1500&h=1000&q=80&cs=tinysrgb"); */

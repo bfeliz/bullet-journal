@@ -3,6 +3,7 @@ html {
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
+    font-family: "Nanum Gothic", sans-serif;
 }
 #logo {
     padding: 0% 3%;
@@ -26,11 +27,16 @@ html {
     background-color: #d66da3;
 }
 form.signup,
-form.login {
-    margin-top: 50px;
+form.login,
+h2,
+p {
+    padding: 0% 5%;
 }
 .here {
     color: #58c7d6;
+}
+.here:hover {
+    color: #d66da3;
 }
 .main {
     margin-top: 8%;
