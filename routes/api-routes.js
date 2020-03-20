@@ -2,12 +2,8 @@
 var db = require("../models");
 var passport = require("../config/passport");
 
-<<<<<<< HEAD
 
 module.exports = function(app) {
-=======
-module.exports = function (app) {
->>>>>>> 649ac1bba59e077dbeb5eed52af8a7ebc371b5fe
   // Using the passport.authenticate middleware with our local strategy.
   // If the user has valid login credentials, send them to the members page.
   // Otherwise the user will be sent an error
