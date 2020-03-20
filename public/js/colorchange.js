@@ -9,23 +9,22 @@ function habitDone () {
 
 $(".cell").click(function(event) {
     // console.log("you clicked me")
-
-    var targetCell = event.target
-
-     
-        if(targetCell.style.background !== "#8a3862"){
-            this.style.background = "#8a3862";
-        $(this).attr("value", true)
-        }
-        if(targetCell.style.color !== "#8a3862"){
-            this.style.color = "#8a3862";
-
-        }
-        else {
-            this.style.background = "";
-            this.style.color = "";
-            $(this).attr("value", false);
-        }
+    switch ($(this).css("background-color")) {
+        case "rgb(253, 242, 242)":
+          $(this).css("background-color", "rgb(138, 56, 98)");
+          $(this).css("color", "rgb(138,56,98)");
+          $(this).attr("value", true);
+          break;
+    
+        // if purple turn pink
+        case "rgb(138, 56, 98)":
+          $(this).css("background-color", "rgb(253, 242, 242)");
+          $(this).css("color", "rgb(253, 242, 242)");
+          $(this).attr("value", false);
+          break;
+      }
+    
+    
 });
 
 

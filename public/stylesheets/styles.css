@@ -14,27 +14,33 @@ h1 {
     /* scroll bar */
     width: 45em;
     overflow-x: auto;
-  
 
     /* position */
     position:absolute; 
     left:0; right:0;
     top:200px; bottom:125px;
-    margin: auto;
+    margin: auto auto auto 400px;
 
   }
 
  
-
-
-div.cell {
-    background: rgb(253, 242, 242);
+.habitcell {
+  background-color: #FDF2F2;
     border: 10px black;
     padding: 5px;
-    color: rgb(253, 242, 242);
+    color: #FDF2F2;
     font-display: none;
-    /* height: 40;
-    width: 60; */
+    height:34.4px;
+
+}
+
+div.cell {
+    background-color: #FDF2F2;
+    border: 10px black;
+    padding: 5px;
+    color: #FDF2F2;
+    font-display: none;
+
   }
 
 
@@ -49,24 +55,25 @@ text-align: center;
   grid-gap: 5px;
   position: absolute;
   left: auto;
-  /* width: 32;
-  height: 34.41; */
+
   top:200px;
   margin: auto;
 
  
   text-align: left;
-  color: red;
+
 
   width: 10em;
   overflow-x: auto;
   border: 10px black;
-  padding: 5px;
-
 
 
 }
 
 .nav-wrapper {
   background-color: #8a3862;
+}
+
+.cellNUM1{
+  color: white;
 }
