@@ -4,7 +4,6 @@ module.exports = function (sequelize, DataTypes) {
         month: {
             type: DataTypes.STRING,
             allowNull: false,
-            unique: true,
         },
         year: {
             type: DataTypes.INTEGER,
