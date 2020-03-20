@@ -65,6 +65,19 @@ app.get("/habits", isAuthenticated, function(req, res) {
   res.render("habits");
 });
 
+app.get("/:month/:year", isAuthenticated, function(req, res){
+  console.log(req.path)
+  db.Monthly.findOne({where: {
+    month: req.params.month,
+    year: req.params.year
+  }}).then(response =>{
+    console.log(response)
+   
+     res.render("monthly", {selectedMonth: response.month, dates: datesArray})
+  })
+  })
+
+
 
 app.get("/", function(req, res) {
   connection.query("SELECT * FROM daily_spread;", function(err, data) {

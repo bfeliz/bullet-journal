@@ -51,6 +51,7 @@ module.exports = function (app) {
       });
     }
   });
+
   app.post("/api/newdaily", function (req, res) {
     console.log(req)
     db.Daily.create({

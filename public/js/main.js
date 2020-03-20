@@ -15,6 +15,13 @@ $(document).ready(function() {
             innerText.splice(2,2)
             console.log(innerText) 
            //ajax request using params sent from here
+           $.ajax('/' + innerText[0] + '/' + innerText[1], {
+            type: "GET",
+        }).then(function(e) {
+            window.location.href = '/' + innerText[0] + '/' + innerText[1]
+           
+            
+        });
         
     })
 
