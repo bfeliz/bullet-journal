@@ -63,11 +63,6 @@ $(document).ready(function() {
                 
                     var listItem = `<div class='row'><div class='col s6'><li class='monthlyli' data-id='${i}'>${data[i].name} Monthly Spread</li></div><div class='col s6'>${data[i].id}</span></div></div>`
                     $('.currentMonthlies').append(listItem)
-
-                    
-
-
-                $(listItem).appendTo(".currentMonthlies");
             }
         }
     });
