@@ -59,15 +59,18 @@ $(document).ready(function() {
     $.get("/api/pages", function(data) {
         if (data.length !== 0) {
             for (var i = 0; i < data.length; i++) {
+
                 
                     var listItem = `<div class='row'><div class='col s6'><li class='monthlyli' data-id='${i}'>${data[i].name} Monthly Spread</li></div><div class='col s6'>${data[i].id}</span></div></div>`
                     $('.currentMonthlies').append(listItem)
 
                     
 
+
+                $(listItem).appendTo(".currentMonthlies");
             }
         }
-    })
+    });
     $.get("/api/alldailies", function(data) {
         if (data.length !== 0) {
             for (var i = 0; i < data.length; i++) {
@@ -82,7 +85,7 @@ $(document).ready(function() {
                 }
             }
         }
-        
+
         $(".dailyli").on("click", function(e) {
             $(this).css("text-decoration", "line-through");
             const $dataId = parseInt($(this).attr("data-id")) + 1;
@@ -147,82 +150,81 @@ $(document).ready(function() {
     //     var id = $("[name=id]").val().trim();
 
     //     var updatedBN = {
-        //       plan: $("#updatebullet [name=plan]").val().trim()
-        //     };
-        
-        //     // Send the PUT request.
-        //     $.ajax("/api/daily_spread/" + id, {
-            //       type: "PUT",
-            //       data: updatedBN
-            //     }).then(
-                //       function() {
-                    //         console.log("updated id ", id);
-                    //         // Reload the page to get the updated list
-                    //         location.reload();
-                    //       }
-                    //     );
-                    //   });
-                    
-                    $(".newMonthly").on("click", function(e) {
-                        e.preventDefault();
-                        $(".modal").modal();
-                        event.preventDefault()
-                        $(".submitButton").on("click", function(e){
-                            const $select = $('select').val()
-                            let chosen = ''
-                            console.log($select)
-                            switch ($select) {
-                                
-                                case '1':
-                                    chosen = 'January'
-                                    break;
-                                case '2':
-                                    chosen = 'February'
-                                    break;
-                                    
-                                    case '3':
-                                        chosen = 'March'
-                                    break;
-                                    case '4':
-                                        chosen = 'April'
-                                    break;
-                                    case '5':
-                                        chosen = 'May'
-                                    break;
-                                    case '6':
-                                        chosen = 'June'
-                                    break;
-                                    case '7':
-                                        chosen = 'July'
-                                    break;
-                                    case '8':
-                                        chosen = 'August'
-                                    break;
-                                    case '9':
-                                        chosen = 'September'
-                                    break;
-                                    case '10':
-                                        chosen = 'October'
-                                    break;
-                                    case '11':
-                                        chosen = 'November'
-                                    break;
-                                    case '12':
-                                        chosen = 'December'
-                                    break;
-                                default:
-                                    chosen = ''
-                                    break;
-                            }
-                            console.log(chosen)
-                            $.ajax("api/newmonthly/" + chosen, {
-                            type: "POST",
-                        }).then(function(e) {
-                            location.reload();
-                        });
-                        })
-                        $('select').formSelect()
-                        //         const submitButton = `<a class="btn waves-effect waves-light center-align" type="submit" name="action">Ok</a>`;
+    //       plan: $("#updatebullet [name=plan]").val().trim()
+    //     };
+
+    //     // Send the PUT request.
+    //     $.ajax("/api/daily_spread/" + id, {
+    //       type: "PUT",
+    //       data: updatedBN
+    //     }).then(
+    //       function() {
+    //         console.log("updated id ", id);
+    //         // Reload the page to get the updated list
+    //         location.reload();
+    //       }
+    //     );
+    //   });
+
+    $(".newMonthly").on("click", function(e) {
+        e.preventDefault();
+        $(".modal").modal();
+        event.preventDefault();
+        $(".submitButton").on("click", function(e) {
+            const $select = $("select").val();
+            let chosen = "";
+            console.log($select);
+            switch ($select) {
+                case "1":
+                    chosen = "January";
+                    break;
+                case "2":
+                    chosen = "February";
+                    break;
+
+                case "3":
+                    chosen = "March";
+                    break;
+                case "4":
+                    chosen = "April";
+                    break;
+                case "5":
+                    chosen = "May";
+                    break;
+                case "6":
+                    chosen = "June";
+                    break;
+                case "7":
+                    chosen = "July";
+                    break;
+                case "8":
+                    chosen = "August";
+                    break;
+                case "9":
+                    chosen = "September";
+                    break;
+                case "10":
+                    chosen = "October";
+                    break;
+                case "11":
+                    chosen = "November";
+                    break;
+                case "12":
+                    chosen = "December";
+                    break;
+                default:
+                    chosen = "";
+                    break;
+            }
+            console.log(chosen);
+            $.ajax("api/newmonthly/" + chosen, {
+                type: "POST"
+            }).then(function(e) {
+                location.reload();
+            });
+        });
+        $("select").formSelect();
+        //         const submitButton = `<a class="btn waves-effect waves-light center-align" type="submit" name="action">Ok</a>`;
         //         const textarea = `<div class="input-field col s12">
         //     <select>
         //       <option value="" disabled selected>Pick a month</option>
@@ -246,10 +248,19 @@ $(document).ready(function() {
         //         $("select").formSelect();
     });
 
+    $(".newCollection").on("click", function(e) {
+        e.preventDefault();
+        $(".modal").modal();
+    });
+    $(".newCollection").on("click", function(e) {
+        e.preventDefault();
+        $(".modal").modal();
+    });
+    $(".newHabit").on("click", function(e) {
+        e.preventDefault();
+        $(".modal").modal();
+    });
+
 });
-
-
-
-
 
 /*  */

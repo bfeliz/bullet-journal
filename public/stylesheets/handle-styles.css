@@ -35,6 +35,10 @@ body {
 .month-title {
     margin-bottom: 6%;
 }
+#textarea-collect,
+#textarea-collect5 {
+    margin-bottom: 3%;
+}
 /* styling for main.handlebars */
 #logo {
     padding-left: 3%;
