@@ -1,6 +1,7 @@
 // Requiring our models and passport as we've configured it
 var db = require("../models");
 var passport = require("../config/passport");
+const moment = require("moment")
 
 module.exports = function (app) {
   // Using the passport.authenticate middleware with our local strategy.
@@ -64,6 +65,12 @@ module.exports = function (app) {
       res.json(data)
     })
   })
+
+  app.get("/api/allmonthlies", function (req, res) {
+    db.Monthly.findAll({}).then(function(data) {
+      res.json(data)
+    })
+  })
   app.put("/api/modifydaily/:id", function (req, res) {
     var condition = "id = " + req.params.id;
   
@@ -77,7 +84,22 @@ module.exports = function (app) {
     ).then(function(data){
       res.json(data)})
   })
+  app.post("/api/newmonthly/:chosen", function (req, res) {
+  
+    db.Monthly.create({
+      month: req.params.chosen,
+      year: moment().get('year'),
+
+    },
+    ).then(function(data){
+      res.json(data)
+    })
+  })
+
 };
+
+
+
 
 
 

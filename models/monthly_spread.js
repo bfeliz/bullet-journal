@@ -12,11 +12,11 @@ module.exports = function (sequelize, DataTypes) {
         }
     })
     Monthly.associate = function (models) {
-        Monthly.belongsTo(models.Journal, {
-            foreignKey: {
-                allowNull: false
-            }
-        })
+        // Monthly.belongsTo(models.Journal, {
+        //     foreignKey: {
+        //         allowNull: false
+        //     }
+        // })
         // Monthly.hasMany(models.Daily, {
         //     foreignKey: {
         //         allowNull: false
