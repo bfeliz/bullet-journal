@@ -66,8 +66,8 @@ module.exports = function (app) {
     })
   })
 
-  app.get("/api/allmonthlies", function (req, res) {
-    db.Monthly.findAll({}).then(function(data) {
+  app.get("/api/pages", function (req, res) {
+    db.Pages.findAll({}).then(function(data) {
       res.json(data)
     })
   })
@@ -85,14 +85,15 @@ module.exports = function (app) {
       res.json(data)})
   })
   app.post("/api/newmonthly/:chosen", function (req, res) {
-  
     db.Monthly.create({
       month: req.params.chosen,
       year: moment().get('year'),
-
-    },
-    ).then(function(data){
-      res.json(data)
+    }).then(function(data){
+      db.Pages.create({
+      name: (req.params.chosen + " " + moment().get('year'))
+    })
+  }).then(function(data2){
+    res.json(data2)
     })
   })
 

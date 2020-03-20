@@ -5,6 +5,18 @@ $(document).ready(function() {
 
     // ----------------------- MONTHLY ------------------------
     // necessary to render calendar correctly
+    function getPage(){
+        console.log('yeet')
+    }
+    $('.currentMonthlies').on("click", function(e){
+        console.log(event.target.classList)
+    
+            const innerText = event.target.innerText.split(' ')
+            innerText.splice(2,2)
+            console.log(innerText) 
+           //ajax request using params sent from here
+        
+    })
 
     // ----------------------- SELECT------------------------
     // necessary to render dropdown select menus correctly
@@ -44,10 +56,16 @@ $(document).ready(function() {
         // })
     });
 
-    $.get("/api/allmonthlies", function(data) {
+    $.get("/api/pages", function(data) {
         if (data.length !== 0) {
             for (var i = 0; i < data.length; i++) {
-                var listItem = `<li class='monthlyli' data-id='${i}'>${data[i].month}${data[i].year}${data[i].id}</li>`;
+
+                
+                    var listItem = `<div class='row'><div class='col s6'><li class='monthlyli' data-id='${i}'>${data[i].name} Monthly Spread</li></div><div class='col s6'>${data[i].id}</span></div></div>`
+                    $('.currentMonthlies').append(listItem)
+
+                    
+
 
                 $(listItem).appendTo(".currentMonthlies");
             }
@@ -229,6 +247,7 @@ $(document).ready(function() {
         //         $(".formRow").append(submitButton);
         //         $("select").formSelect();
     });
+
     $(".newCollection").on("click", function(e) {
         e.preventDefault();
         $(".modal").modal();
@@ -241,6 +260,7 @@ $(document).ready(function() {
         e.preventDefault();
         $(".modal").modal();
     });
+
 });
 
 /*  */

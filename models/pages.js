@@ -8,12 +8,12 @@ module.exports = function (sequelize, DataTypes) {
         }
     })
 
-   Pages.associate = function (models) {
-        Pages.belongsTo(models.bulletIndex, {
-            foreignKey: {
-                allowNull: false
-            }
-        });
-    }
+//    Pages.associate = function (models) {
+//         Pages.belongsTo(models.bulletIndex, {
+//             foreignKey: {
+//                 allowNull: false
+//             }
+//         });
+//     }
     return Pages;
 }
