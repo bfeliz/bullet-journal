@@ -11,6 +11,30 @@ body {
     background-size: cover; */
     color: #ddd;
 }
+/* styling for home.handlebars */
+.index,
+.tasks {
+    font-size: 125px;
+    font-family: "Akronim", cursive;
+    text-align: center;
+    color: #3f818a;
+    margin-top: 5%;
+}
+.main-button {
+    margin: 2%;
+}
+.currentDailies {
+    color: black;
+}
+#modal1 {
+    height: 50%;
+}
+.modal-content {
+    margin: 6%;
+}
+.month-title {
+    margin-bottom: 6%;
+}
 /* styling for main.handlebars */
 #logo {
     padding-left: 3%;
@@ -132,6 +156,9 @@ textarea.materialize-textarea {
     }
     .datepicker .ui-datepicker-inline {
         padding: 0;
+    }
+    .month-title {
+        font-size: 5vw;
     }
 }
 @media screen and (max-width: 600px) {

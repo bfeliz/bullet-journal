@@ -1,36 +1,66 @@
+<div class="row center-align buttonRow">
+    <button data-target="modal1"
+        class="btn waves-effect waves-light cyan lighten-1 newMonthly main-button modal-trigger">Monthly
+        Spread</button>
+    <a class="btn waves-effect waves-light cyan lighten-1 newCollection main-button" type="submit" name="action">New
+        Collection</a>
+    <a class="btn waves-effect waves-light cyan lighten-1 newHabit main-button" type="submit" name="action">New Habit
+        Tracker</a>
+</div>
+
 {{!-- index --}}
-<div class="container">
-    <div class="row">
-        <div class="col s12 m12 l6">
-
-        </div>
-    </div>
+<div class="row">
+    <div class="col s12 m12 l5">
+        <h1 class="index">Index</h1>
     </div>
 
+    <div class="col l2"></div>
     {{!-- todos new--}}
-    <div class="col s12 m12 l6" id="daily-table">
+    <div class="col s12 m12 l5">
         <div class="row">
-            <div class="input-field col s12">
-                <h3>New Task</h3>
-                <textarea id="textarea1" class="materialize-textarea"></textarea>
-                <a class="btn waves-effect waves-light newdaily" type="submit" name="action">Submit</a>
-
+            <div class="col s12">
+                <h1 class="tasks">Tasks</h1>
+                <div class="input-field col s9">
+                    <textarea id="textarea1" class="materialize-textarea"></textarea>
+                    <label for="textarea1">Add a task</label>
+                </div>
+                <div class="input-field col s3">
+                    <button class="btn waves-effect waves-light btn-small cyan lighten-1 newdaily" type="submit"
+                        name="action">Submit
+                    </button>
+                </div>
             </div>
-            {{!-- render db --}}
         </div>
-
-        <ol class='currentDailies'>Current Dailies</ol>
+        {{!-- render db --}}
+        <div>
+            <ol class='currentDailies'></ol>
+        </div>
     </div>
 </div>
-<div class="container">
-<div class="row buttonsRow">
-    <a class="btn waves-effect waves-light newMonthly center-align" type="submit" name="action">New Monthly</a>
-    <a class="btn waves-effect waves-light newHabit center-align" type="submit" name="action">New Habit Tracker</a>
-</div>
-</div>
-<div class="container">
-<div class="formRow">
 
+{{!-- new monthly modal --}}
+<div id="modal1" class="modal">
+    <div class="modal-content">
+        <h4 class="month-title">Create a new monthly spread</h4>
+        <div class="input-field col s12">
+            <select>
+                <option value="" disabled selected>Pick a month</option>
+                <option value="1">January</option>
+                <option value="2">February</option>
+                <option value="3">March</option>
+                <option value="4">April</option>
+                <option value="5">May</option>
+                <option value="6">June</option>
+                <option value="7">July</option>
+                <option value="8">August</option>
+                <option value="9">September</option>
+                <option value="10">October</option>
+                <option value="11">November</option>
+                <option value="12">December</option>
+            </select>
+            <button class="btn waves-effect waves-light btn-small cyan lighten-1 newdaily" type="submit"
+                name="action">Submit
+            </button>
+        </div>
+    </div>
 </div>
-</div>
-{{!-- todos --}}
