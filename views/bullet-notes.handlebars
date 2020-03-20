@@ -1,35 +1,46 @@
-{{!-- add styling here later --}}
-<h1>Collection</h1>
-{{!-- insert Date here --}}
-{{!-- <h2 class="date"></h2>
-<ul>
-  {{#each daily_spread}}
-  <li>
-    <p>
-      {{this.id}}. {{this.day}}
+<h1 class="collection">Collection</h1>
 
-      <button data-bulletid="{{this.id}}" class="delbullet">Delete</button>
-    </p>
-  </li>
-  {{/each}}
-</ul> --}}
-
-<div class="row">
+<div class="row collection-row">
   <div class="col s12 m12 l6">
-    <h2>Subdivision One</h2>
-    <form id="createbullet" class="button-size">
-      <textarea type="text" name="buletnote"></textarea>
-      <button type="submit">Save</button>
-    </form>
-    <h2>Subdivision Two</h2>
-    <form id="updatebullet" class="button-size">
-      <select name="id">
-        {{#each daily_spread}}
-        <option value="{{this.id}}">{{this.day}}</option>
-        {{/each}}
-      </select>
-      <textarea type="text" name="plan"></textarea>
-      <button type="submit">Update</button>
-    </form>
+    <h2 class="mini-collection">Subdivision</h2>
+    <div class="input-field col s12">
+      <textarea id="textarea2" class="materialize-textarea"></textarea>
+      <label for="textarea2"></label>
+    </div>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <h2 class="mini-collection">Subdivision</h2>
+    <div class="input-field col s12" id="collect-bottom2">
+      <textarea id="textarea2" class="materialize-textarea"></textarea>
+      <label for="textarea2"></label>
+    </div>
+  </div>
+  <div class="col s12 m12 l6" id="collect-bottom">
+    <h2 class="mini-collection">Subdivision</h2>
+    <div class="input-field col s12">
+      <textarea id="textarea2" class="materialize-textarea"></textarea>
+      <label for="textarea2"></label>
+    </div>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <h2 class="mini-collection">Subdivision</h2>
+    <div class="input-field col s12" id="collect-bottom3">
+      <textarea id="textarea2" class="materialize-textarea"></textarea>
+      <label for="textarea2"></label>
+    </div>
   </div>
 </div>

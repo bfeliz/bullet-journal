@@ -8,7 +8,8 @@
     <link rel="icon" href="/assets/favicon2.png" type="image/x-icon" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Amatic+SC:700|Nanum+Gothic|Shadows+Into+Light&display=swap"
+    <link
+        href="https://fonts.googleapis.com/css?family=Akronim|Amatic+SC:700|Nanum+Gothic|Shadows+Into+Light&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
         integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous" />
@@ -19,20 +20,22 @@
 <body>
     <nav>
         <div class="nav-wrapper">
-            <a href="#" class="brand-logo" id="logo">Bullet Journal</a>
+            <a href="#" class="brand-logo flow-text" id="logo">Bullet Journal</a>
             <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
             <ul id="nav-mobile" class="right hide-on-med-and-down">
                 <li><a class="navbar-brand" href="/logout">Logout</a></li>
+                <li><a href="/members">Main</a></li>
                 <li><a href="/monthly">Monthly Spread</a></li>
-                <li><a href="/dailyspread">Daily Spread</a></li>
+                <li><a href="/dailyspread">Collections</a></li>
                 <li><a href="/habits">Habit Tracker</a></li>
             </ul>
         </div>
     </nav>
     <ul class="sidenav" id="mobile-demo">
-        <li><a href="#">Monthly Spread</a></li>
-        <li><a href="#">Daily Spread</a></li>
-        <li><a href="#">Habit Tracker</a></li>
+        <li><a href="/members">Main</a></li>
+        <li><a href="/monthly">Monthly Spread</a></li>
+        <li><a href="/dailyspread">Collections</a></li>
+        <li><a href="/habits">Habit Tracker</a></li>
     </ul>
     <div class="container">
         {{{ body }}}
