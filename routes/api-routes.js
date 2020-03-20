@@ -84,19 +84,30 @@ module.exports = function (app) {
     ).then(function(data){
       res.json(data)})
   })
-  app.post("/api/newmonthly/:chosen", function (req, res) {
-    db.Monthly.create({
+  app.post("/api/newmonthly/:chosen", async function (req, res) {
+  try{
+   await monthlyCreate()
+   await pagesCreate()}
+
+   catch(err){
+     console.log(err)
+   }
+   
+    function monthlyCreate(){ db.Monthly.create({
       month: req.params.chosen,
       year: moment().get('year'),
-    }).then(function(data){
-      db.Pages.create({
-      name: (req.params.chosen + " " + moment().get('year'))
-    })
-  }).then(function(data2){
-    res.json(data2)
-    })
+    }).then(answers =>{
+      console.log("Monthly Done")
+    }).catch(err => console.log(err))
+  }
+   function pagesCreate(){ db.Pages.create({
+    name: (req.params.chosen + " " + moment().get('year'))
+    }).then(answers =>{
+      res.json(answers)
+  
   })
-
+}
+  })
 };
 
 
