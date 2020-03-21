@@ -68,7 +68,6 @@ body {
 }
 .datepicker .ui-datepicker-header {
     height: 250px;
-    background-image: url(../assets/march.jpg);
     background-size: cover;
     background-repeat: no-repeat;
 }

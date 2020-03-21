@@ -27,42 +27,94 @@ $(document).ready(function() {
     switch (calMonth) {
         case "January 2020":
             $(".datepicker").datepicker("setDate", "01/01/2020");
+            $(".ui-datepicker-header").css(
+                "background-image",
+                "url(../assets/jan.jpg)"
+            );
             break;
         case "February 2020":
             $(".datepicker").datepicker("setDate", "02/01/2020");
+            $(".ui-datepicker-header").css(
+                "background-image",
+                "url(../assets/feb.jpg)"
+            );
             break;
         case "March 2020":
             $(".datepicker").datepicker("setDate", "03/01/2020");
+            $(".ui-datepicker-header").css(
+                "background-image",
+                "url(../assets/march.jpg)"
+            );
             break;
         case "April 2020":
             $(".datepicker").datepicker("setDate", "04/01/2020");
+            $(".ui-datepicker-header").css(
+                "background-image",
+                "url(../assets/april.jpg)"
+            );
             break;
         case "May 2020":
             $(".datepicker").datepicker("setDate", "05/01/2020");
+            $(".ui-datepicker-header").css(
+                "background-image",
+                "url(../assets/may.jpg)"
+            );
             break;
         case "June 2020":
             $(".datepicker").datepicker("setDate", "06/01/2020");
+            $(".ui-datepicker-header").css(
+                "background-image",
+                "url(../assets/june.jpg)"
+            );
             break;
         case "July 2020":
             $(".datepicker").datepicker("setDate", "07/01/2020");
+            $(".ui-datepicker-header").css(
+                "background-image",
+                "url(../assets/july.jpg)"
+            );
             break;
         case "August 2020":
             $(".datepicker").datepicker("setDate", "08/01/2020");
+            $(".ui-datepicker-header").css(
+                "background-image",
+                "url(../assets/aug.jpg)"
+            );
             break;
         case "September 2020":
             $(".datepicker").datepicker("setDate", "09/01/2020");
+            $(".ui-datepicker-header").css(
+                "background-image",
+                "url(../assets/sept.jpg)"
+            );
             break;
         case "October 2020":
             $(".datepicker").datepicker("setDate", "10/01/2020");
+            $(".ui-datepicker-header").css(
+                "background-image",
+                "url(../assets/oct.jpg)"
+            );
             break;
         case "November 2020":
             $(".datepicker").datepicker("setDate", "11/01/2020");
+            $(".ui-datepicker-header").css(
+                "background-image",
+                "url(../assets/nov.jpg)"
+            );
             break;
         case "December 2020":
             $(".datepicker").datepicker("setDate", "12/01/2020");
+            $(".ui-datepicker-header").css(
+                "background-image",
+                "url(../assets/dec.jpg)"
+            );
             break;
         default:
             $(".datepicker").datepicker();
+            $(".ui-datepicker-header").css(
+                "background-image",
+                "url(../assets/default.jpg)"
+            );
             break;
     }
     // $('.currentMonthlies').on("click", function(e){
