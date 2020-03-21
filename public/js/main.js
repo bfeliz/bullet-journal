@@ -39,9 +39,22 @@ $(document).ready(function() {
     const $currentDaily = $(".currentDailies");
 
     $(".datepicker").datepicker({
+        // required to hide arrow functionality
         prevText: '<i class="fa fa-fw fa-angle-left"></i>',
         nextText: '<i class="fa fa-fw fa-angle-right"></i>'
     });
+
+    // $("#SetMonth").click(function(){SetMonth(parseInt($('#month').val())-1);}); //January = month # 0
+    //    $("#datepicker").datepicker();
+    //    $("#datepicker").datepicker("setDate",new Date());
+    // });
+
+    // function SetMonth(month)
+    // {
+    //     var date = $("#datepicker").datepicker( 'getDate' );
+    //     date.setMonth(month);
+    //     $("#datepicker").datepicker("setDate", date);
+    // }
 
     // ---------------- HABIT TRACKER --------------------
     // add button to each cell
@@ -138,127 +151,61 @@ $(document).ready(function() {
         });
     });
 
-    // ---------------------- COLLECTIONS LOGIC IF NEEDED (FROM DENNIS WHEN IT WAS DAILIES) ------------------------
-    //     type="text/javascript">
-    //   $(".delbullet").on("click", function(event) {
-    //     // Get the ID from the button.
-    //     // This is shorthand for $(this).attr("data-planid")
-    //     var id = $(this).data("bulletid");
-
-    //     // Send the DELETE request.
-    //     $.ajax("/api/daily_spread/" + id, {
-    //       type: "DELETE"
-    //     }).then(
-    //       function() {
-    //         console.log("deleted id ", id);
-    //         // Reload the page to get the updated list
-    //         location.reload();
-    //       }
-    //     );
-    //   });
-
-    //   $("#createbullet").on("submit", function(event) {
-    //     // Make sure to preventDefault on a submit event.
-    //     event.preventDefault();
-
-    //     // [name=bulletnote] will find an element with a "name" attribute equal to the string "bulletnote"
-    //     var newBN = {
-    //       plan: $("#createbullet [name=bulletnote]").val().trim()
-    //     };
-
-    //     // Send the POST request.
-    //     $.ajax("/api/daily_spread", {
-    //       type: "POST",
-    //       data: newBN
-    //     }).then(
-    //       function() {
-    //         console.log("created new bullet note");
-    //         // Reload the page to get the updated list
-    //         location.reload();
-    //       }
-    //     );
-    //   });
-
-    //   $("#updatebullet").on("submit", function(event) {
-    //     // Make sure to preventDefault on a submit event.
-    //     event.preventDefault();
-
-    //     // Get the ID by finding an element with a "name" attribute equal to the string "id"
-    //     var id = $("[name=id]").val().trim();
-
-    //     var updatedBN = {
-    //       plan: $("#updatebullet [name=plan]").val().trim()
-    //     };
-
-    //     // Send the PUT request.
-    //     $.ajax("/api/daily_spread/" + id, {
-    //       type: "PUT",
-    //       data: updatedBN
-    //     }).then(
-    //       function() {
-    //         console.log("updated id ", id);
-    //         // Reload the page to get the updated list
-    //         location.reload();
-    //       }
-    //     );
-    //   });
-
     $(".newMonthly").on("click", function(e) {
         e.preventDefault();
         $(".modal").modal();
-        event.preventDefault();
-        $(".submitButton").on("click", function(e) {
-            const $select = $("select").val();
-            let chosen = "";
-            switch ($select) {
-                case "1":
-                    chosen = "January";
-                    break;
-                case "2":
-                    chosen = "February";
-                    break;
+    });
+    $(".submitButton").on("click", function(e) {
+        e.preventDefault();
+        const $select = $("select").val();
+        let chosen = "";
+        switch ($select) {
+            case "1":
+                chosen = "January";
+                break;
+            case "2":
+                chosen = "February";
+                break;
 
-                case "3":
-                    chosen = "March";
-                    break;
-                case "4":
-                    chosen = "April";
-                    break;
-                case "5":
-                    chosen = "May";
-                    break;
-                case "6":
-                    chosen = "June";
-                    break;
-                case "7":
-                    chosen = "July";
-                    break;
-                case "8":
-                    chosen = "August";
-                    break;
-                case "9":
-                    chosen = "September";
-                    break;
-                case "10":
-                    chosen = "October";
-                    break;
-                case "11":
-                    chosen = "November";
-                    break;
-                case "12":
-                    chosen = "December";
-                    break;
-                default:
-                    chosen = "";
-                    break;
-            }
-            $.ajax("api/newmonthly/" + chosen, {
-                type: "POST"
-            }).then(function(e) {
-                location.reload();
-            });
+            case "3":
+                chosen = "March";
+                break;
+            case "4":
+                chosen = "April";
+                break;
+            case "5":
+                chosen = "May";
+                break;
+            case "6":
+                chosen = "June";
+                break;
+            case "7":
+                chosen = "July";
+                break;
+            case "8":
+                chosen = "August";
+                break;
+            case "9":
+                chosen = "September";
+                break;
+            case "10":
+                chosen = "October";
+                break;
+            case "11":
+                chosen = "November";
+                break;
+            case "12":
+                chosen = "December";
+                break;
+            default:
+                chosen = "";
+                break;
+        }
+        $.ajax("api/newmonthly/" + chosen, {
+            type: "POST"
+        }).then(function(e) {
+            location.reload();
         });
-        $("select").formSelect();
     });
 
     $(".newCollection").on("click", function(e) {

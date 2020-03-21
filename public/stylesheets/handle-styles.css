@@ -5,10 +5,6 @@ html {
 body {
     font-family: "Nanum Gothic", sans-serif;
     font-size: 1.2em;
-    /* background: #ffe7e9
-        url("https://images.unsplash.com/photo-1456271390536-693558280c8f?dpr=1&auto=format&crop=entropy&fit=crop&w=1500&h=996&q=80&cs=tinysrgb")
-        no-repeat center center fixed;
-    background-size: cover; */
     color: #ddd;
 }
 /* styling for home.handlebars */
@@ -247,6 +243,10 @@ div.cell {
     }
     .collection {
         font-size: 75px;
+    }
+    .index,
+    .tasks {
+        text-align: center;
     }
 }
 @media screen and (max-width: 992px) {

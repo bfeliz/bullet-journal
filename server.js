@@ -55,7 +55,6 @@ app.get("/monthly/:id", isAuthenticated, function(req, res) {
             id: req.params.id
         }
     }).then(function(data) {
-        console.log(data);
         res.render("monthly", {
             dates: datesArray,
             month: data
