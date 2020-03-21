@@ -4,10 +4,10 @@ $(document).ready(function() {
     $(".sidenav").sidenav();
 
     // ----------------------- MONTHLY ------------------------
-    // necessary to render calendar correctly
     function getPage() {
         console.log("yeet");
     }
+
     $(".currentMonthlies").on("click", function(e) {
         console.log(event.target.classList);
 
@@ -16,6 +16,55 @@ $(document).ready(function() {
         console.log(innerText);
         //ajax request using params sent from here
     });
+
+    // set calendar to match month
+    $(".datepicker").datepicker({
+        prevText: '<i class="fa fa-fw fa-angle-left"></i>',
+        nextText: '<i class="fa fa-fw fa-angle-right"></i>'
+    });
+    let calMonth = $(".month").text();
+
+    switch (calMonth) {
+        case "January 2020":
+            $(".datepicker").datepicker("setDate", "01/01/2020");
+            break;
+        case "February 2020":
+            $(".datepicker").datepicker("setDate", "02/01/2020");
+            break;
+        case "March 2020":
+            $(".datepicker").datepicker("setDate", "03/01/2020");
+            break;
+        case "April 2020":
+            $(".datepicker").datepicker("setDate", "04/01/2020");
+            break;
+        case "May 2020":
+            $(".datepicker").datepicker("setDate", "05/01/2020");
+            break;
+        case "June 2020":
+            $(".datepicker").datepicker("setDate", "06/01/2020");
+            break;
+        case "July 2020":
+            $(".datepicker").datepicker("setDate", "07/01/2020");
+            break;
+        case "August 2020":
+            $(".datepicker").datepicker("setDate", "08/01/2020");
+            break;
+        case "September 2020":
+            $(".datepicker").datepicker("setDate", "09/01/2020");
+            break;
+        case "October 2020":
+            $(".datepicker").datepicker("setDate", "10/01/2020");
+            break;
+        case "November 2020":
+            $(".datepicker").datepicker("setDate", "11/01/2020");
+            break;
+        case "December 2020":
+            $(".datepicker").datepicker("setDate", "12/01/2020");
+            break;
+        default:
+            $(".datepicker").datepicker();
+            break;
+    }
     // $('.currentMonthlies').on("click", function(e){
     //     console.log(event.target.classList)
 
@@ -38,23 +87,11 @@ $(document).ready(function() {
 
     const $currentDaily = $(".currentDailies");
 
-    $(".datepicker").datepicker({
-        // required to hide arrow functionality
-        prevText: '<i class="fa fa-fw fa-angle-left"></i>',
-        nextText: '<i class="fa fa-fw fa-angle-right"></i>'
-    });
-
-    // $("#SetMonth").click(function(){SetMonth(parseInt($('#month').val())-1);}); //January = month # 0
-    //    $("#datepicker").datepicker();
-    //    $("#datepicker").datepicker("setDate",new Date());
+    // $(".datepicker").datepicker({
+    //     // required to hide arrow functionality
+    //     prevText: '<i class="fa fa-fw fa-angle-left"></i>',
+    //     nextText: '<i class="fa fa-fw fa-angle-right"></i>'
     // });
-
-    // function SetMonth(month)
-    // {
-    //     var date = $("#datepicker").datepicker( 'getDate' );
-    //     date.setMonth(month);
-    //     $("#datepicker").datepicker("setDate", date);
-    // }
 
     // ---------------- HABIT TRACKER --------------------
     // add button to each cell

@@ -221,6 +221,7 @@ div.cell {
 .cellNUM1 {
     color: white;
 }
+
 /* media screens */
 @media screen and (max-width: 410px) {
     #logo {
