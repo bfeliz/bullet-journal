@@ -4,7 +4,7 @@ var session = require("express-session");
 // Requiring passport as we've configured it
 var passport = require("./config/passport");
 var isAuthenticated = require("./config/middleware/isAuthenticated");
-var moment = require("moment")
+var moment = require("moment");
 
 // Setting up port and requiring models for syncing
 var PORT = process.env.PORT || 8080;
@@ -27,122 +27,137 @@ app.use(passport.session());
 require("./routes/html-routes.js")(app);
 require("./routes/api-routes.js")(app);
 
-
 // Set Handlebars.
 
-const datesArray = []
+const datesArray = [];
 for (let i = 1; i < moment().daysInMonth() + 1; i++) {
-  datesArray.push({date: i})
+    datesArray.push({ date: i });
 }
 var exphbs = require("express-handlebars");
-app.engine('handlebars', exphbs({
-  // helpers: {
-  //     daysOfMonth: function (context, options) { 
-  //       return percs
-       
-  //     }
-  // },
-defaultLayout: 'main'
-}));
+app.engine(
+    "handlebars",
+    exphbs({
+        // helpers: {
+        //     daysOfMonth: function (context, options) {
+        //       return percs
+
+        //     }
+        // },
+        defaultLayout: "main"
+    })
+);
 
 app.set("view engine", "handlebars");
 
+app.get("/monthly/:id", isAuthenticated, function(req, res) {
+    db.Monthly.findAll({
+        where: {
+            id: req.params.id
+        }
+    }).then(function(data) {
+        console.log(data);
+        res.render("monthly", {
+            dates: datesArray,
+            month: data
+        });
+    });
+});
+
 app.get("/monthly", isAuthenticated, function(req, res) {
-  res.render("monthly", {
-    dates: datesArray});
+    res.render("monthly", {
+        dates: datesArray
+    });
+});
+
+app.get("/dailyspread/:id", isAuthenticated, function(req, res) {
+    db.Posts.findAll({
+        where: {
+            id: req.params.id
+        }
+    }).then(function(data) {
+        console.log(data);
+        res.render("bullet-notes", {
+            collect: data
+        });
+    });
 });
 
 app.get("/dailyspread", isAuthenticated, function(req, res) {
-  res.render("bullet-notes");
+    res.render("bullet-notes");
 });
 
 app.get("/members", isAuthenticated, function(req, res) {
-res.render("home");  
+    res.render("home");
 });
-
 
 app.get("/habits", isAuthenticated, function(req, res) {
-  res.render("habits");
+    res.render("habits");
 });
 
-
 app.get("/", function(req, res) {
-  connection.query("SELECT * FROM daily_spread;", function(err, data) {
-    if (err) {
-      return res.status(500).end();
-    }
+    connection.query("SELECT * FROM daily_spread;", function(err, data) {
+        if (err) {
+            return res.status(500).end();
+        }
 
-    res.render("bullet-notes", { daily_spread: data });
-  });
+        res.render("bullet-notes", { daily_spread: data });
+    });
 });
 
 // Create a new plan
 app.post("/api/daily_spread", function(req, res) {
-  connection.query("INSERT INTO daily_spread (day) VALUES (?)", [req.body.day], function(err, result) {
-    if (err) {
-      return res.status(500).end();
-    }
+    connection.query(
+        "INSERT INTO daily_spread (day) VALUES (?)",
+        [req.body.day],
+        function(err, result) {
+            if (err) {
+                return res.status(500).end();
+            }
 
-    // Send back the ID of the new plan
-    res.json({ id: result.insertId });
-    console.log({ id: result.insertId });
-  });
+            // Send back the ID of the new plan
+            res.json({ id: result.insertId });
+            console.log({ id: result.insertId });
+        }
+    );
 });
 
 // Update a plan
 app.put("/api/daily_spread/:id", function(req, res) {
-  connection.query("UPDATE daily_spread SET day = ? WHERE id = ?", [req.body.day, req.params.id], function(err, result) {
-    if (err) {
-      // If an error occurred, send a generic server failure
-      return res.status(500).end();
-    }
-    else if (result.changedRows === 0) {
-      // If no rows were changed, then the ID must not exist, so 404
-      return res.status(404).end();
-    }
-    res.status(200).end();
-
-  });
+    connection.query(
+        "UPDATE daily_spread SET day = ? WHERE id = ?",
+        [req.body.day, req.params.id],
+        function(err, result) {
+            if (err) {
+                // If an error occurred, send a generic server failure
+                return res.status(500).end();
+            } else if (result.changedRows === 0) {
+                // If no rows were changed, then the ID must not exist, so 404
+                return res.status(404).end();
+            }
+            res.status(200).end();
+        }
+    );
 });
 
 // Delete a plan
 app.delete("/api/daily_spread/:id", function(req, res) {
-  connection.query("DELETE FROM daily_spread WHERE id = ?", [req.params.id], function(err, result) {
-    if (err) {
-      // If an error occurred, send a generic server failure
-      return res.status(500).end();
-    }
-    else if (result.affectedRows === 0) {
-      // If no rows were changed, then the ID must not exist, so 404
-      return res.status(404).end();
-    }
-    res.status(200).end();
-
-  });
+    connection.query(
+        "DELETE FROM daily_spread WHERE id = ?",
+        [req.params.id],
+        function(err, result) {
+            if (err) {
+                // If an error occurred, send a generic server failure
+                return res.status(500).end();
+            } else if (result.affectedRows === 0) {
+                // If no rows were changed, then the ID must not exist, so 404
+                return res.status(404).end();
+            }
+            res.status(200).end();
+        }
+    );
 });
 
-module.exports = moment
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+module.exports = moment;
 
 // Syncing our database and logging a message to the user upon success
 db.sequelize.sync().then(function() {
@@ -154,4 +169,3 @@ db.sequelize.sync().then(function() {
         );
     });
 });
-

@@ -1,8 +1,12 @@
-<h1 class="collection">Collection</h1>
+{{#each collect}}
+<h1 class="collection">{{dataValues.name}}</h1>
+{{/each}}
 
 <div class="row collection-row">
   <div class="col s12 m12 l6">
-    <h2 class="mini-collection">Subdivision</h2>
+    {{#each collect}}
+    <h2 class="mini-collection">{{dataValues.sub1Name}}</h2>
+    {{/each}}
     <div class="input-field col s12">
       <textarea id="textarea2" class="materialize-textarea"></textarea>
       <label for="textarea2"></label>
@@ -16,14 +20,18 @@
     <br>
     <br>
     <br>
-    <h2 class="mini-collection">Subdivision</h2>
+    {{#each collect}}
+    <h2 class="mini-collection">{{dataValues.sub2Name}}</h2>
+    {{/each}}
     <div class="input-field col s12" id="collect-bottom2">
       <textarea id="textarea2" class="materialize-textarea"></textarea>
       <label for="textarea2"></label>
     </div>
   </div>
   <div class="col s12 m12 l6" id="collect-bottom">
-    <h2 class="mini-collection">Subdivision</h2>
+    {{#each collect}}
+    <h2 class="mini-collection">{{dataValues.sub3Name}}</h2>
+    {{/each}}
     <div class="input-field col s12">
       <textarea id="textarea2" class="materialize-textarea"></textarea>
       <label for="textarea2"></label>
@@ -37,7 +45,9 @@
     <br>
     <br>
     <br>
-    <h2 class="mini-collection">Subdivision</h2>
+    {{#each collect}}
+    <h2 class="mini-collection">{{dataValues.sub4Name}}</h2>
+    {{/each}}
     <div class="input-field col s12" id="collect-bottom3">
       <textarea id="textarea2" class="materialize-textarea"></textarea>
       <label for="textarea2"></label>

@@ -2,7 +2,9 @@
 <div class="row monthly-row">
     <div class="col s12 m12 l6 monthly-columns">
         <h1 class="welcome">Hello</h1>
-        <h3 class="month">March</h3>
+        {{#each month}}
+        <h3 class="month">{{dataValues.month}} {{dataValues.year}}</h3>
+        {{/each}}
         <div class='datepicker'>
             <div class="datepicker-header">
             </div>

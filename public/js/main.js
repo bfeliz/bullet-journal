@@ -5,18 +5,17 @@ $(document).ready(function() {
 
     // ----------------------- MONTHLY ------------------------
     // necessary to render calendar correctly
-    function getPage(){
-        console.log('yeet')
+    function getPage() {
+        console.log("yeet");
     }
-    $('.currentMonthlies').on("click", function(e){
-        console.log(event.target.classList)
-    
-            const innerText = event.target.innerText.split(' ')
-            innerText.splice(2,2)
-            console.log(innerText) 
-           //ajax request using params sent from here
-        
-    })
+    $(".currentMonthlies").on("click", function(e) {
+        console.log(event.target.classList);
+
+        const innerText = event.target.innerText.split(" ");
+        innerText.splice(2, 2);
+        console.log(innerText);
+        //ajax request using params sent from here
+    });
 
     // ----------------------- SELECT------------------------
     // necessary to render dropdown select menus correctly
@@ -27,6 +26,34 @@ $(document).ready(function() {
     $(".datepicker").datepicker({
         prevText: '<i class="fa fa-fw fa-angle-left"></i>',
         nextText: '<i class="fa fa-fw fa-angle-right"></i>'
+    });
+
+    // ---------------- HABIT TRACKER --------------------
+    // add button to each cell
+    function habitDone() {
+        var button = $("<button>");
+        $(".cell").append(button);
+    }
+
+    // add event listener to each button-cell
+    // change cell color when clicked - loop through to listen to click - color change
+
+    $(".cell").click(function(event) {
+        // console.log("you clicked me")
+        switch ($(this).css("background-color")) {
+            case "rgb(253, 242, 242)":
+                $(this).css("background-color", "rgb(138, 56, 98)");
+                $(this).css("color", "rgb(138,56,98)");
+                $(this).attr("value", true);
+                break;
+
+            // if purple turn pink
+            case "rgb(138, 56, 98)":
+                $(this).css("background-color", "rgb(253, 242, 242)");
+                $(this).css("color", "rgb(253, 242, 242)");
+                $(this).attr("value", false);
+                break;
+        }
     });
 
     // ---------------- MAIN LANDING PAGE -----------------
@@ -59,10 +86,10 @@ $(document).ready(function() {
     $.get("/api/pages", function(data) {
         if (data.length !== 0) {
             for (var i = 0; i < data.length; i++) {
+                var listItem = `<div class='row'><div class='col s6'><a href='${data[i].type}/${data[i].typeId}' class='monthlyli' data-id='${i}'>${data[i].name} </a></div><div class='col s6'>${data[i].id}</span></div></div>`;
 
-                
-                    var listItem = `<div class='row'><div class='col s6'><li class='monthlyli' data-id='${i}'>${data[i].name} Monthly Spread</li></div><div class='col s6'>${data[i].id}</span></div></div>`
-                    $('.currentMonthlies').append(listItem)
+                // var listItem = `<div class='row'><div class='col s6'><li class='monthlyli' data-id='${i}'>${data[i].name} </li></div><div class='col s6'>${data[i].id}</span></div></div>`;
+                $(".currentMonthlies").append(listItem);
             }
         }
     });
@@ -212,7 +239,7 @@ $(document).ready(function() {
             }
             $.ajax("api/newmonthly/" + chosen, {
                 type: "POST"
-            }).then(function(e){
+            }).then(function(e) {
                 location.reload();
             });
         });
@@ -223,15 +250,53 @@ $(document).ready(function() {
         e.preventDefault();
         $(".modal").modal();
     });
-    $(".newCollection").on("click", function(e) {
+    $(".submitButton2").on("click", function(e) {
         e.preventDefault();
-        $(".modal").modal();
+        let array = [];
+        const collect = $("#textarea-collect").val();
+        array.push(collect);
+        const colsub1 = $("#textarea-collect2").val();
+        if (!colsub1) {
+            array.push(colsub1);
+            array.push(false);
+        } else {
+            array.push(colsub1);
+            array.push(true);
+        }
+        const colsub2 = $("#textarea-collect3").val();
+        if (!colsub2) {
+            array.push(colsub2);
+            array.push(false);
+        } else {
+            array.push(colsub2);
+            array.push(true);
+        }
+        const colsub3 = $("#textarea-collect4").val();
+        if (!colsub3) {
+            array.push(colsub3);
+            array.push(false);
+        } else {
+            array.push(colsub3);
+            array.push(true);
+        }
+        const colsub4 = $("#textarea-collect5").val();
+        if (!colsub4) {
+            array.push(colsub4);
+            array.push(false);
+        } else {
+            array.push(colsub4);
+            array.push(true);
+        }
+        $.ajax("api/newcollection/" + array, {
+            type: "POST"
+        }).then(function() {
+            location.reload();
+        });
     });
     $(".newHabit").on("click", function(e) {
         e.preventDefault();
         $(".modal").modal();
     });
-
 });
 
 /*  */
