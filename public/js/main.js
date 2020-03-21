@@ -348,6 +348,26 @@ $(document).ready(function() {
         e.preventDefault();
         $(".modal").modal();
     });
-});
 
-/*  */
+    // ------------------- COLLECTIONS ---------------------
+    let mini1 = $("#mini1").text();
+    let mini2 = $("#mini2").text();
+    let mini3 = $("#mini3").text();
+    let mini4 = $("#mini4").text();
+    if (!mini1) {
+        $("#mini1").addClass("hide");
+        $("#area1").addClass("hide");
+    }
+    if (!mini2) {
+        $("#mini2").addClass("hide");
+        $("#collect-bottom2").addClass("hide");
+    }
+    if (!mini3) {
+        $("#mini3").addClass("hide");
+        $("#area2").addClass("hide");
+    }
+    if (!mini4) {
+        $("#mini4").addClass("hide");
+        $("#collect-bottom3").addClass("hide");
+    }
+});
