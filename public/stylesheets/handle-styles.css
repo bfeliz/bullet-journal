@@ -136,7 +136,7 @@ textarea.materialize-textarea {
     text-align: center;
     color: #3f818a;
     margin-top: 6%;
-    border: none;
+    border: none;               
 }
 #collect-bottom {
     margin-bottom: 30%;
@@ -153,74 +153,66 @@ textarea.materialize-textarea {
 /* habit tracker styling */
 
 /* not sure what this was for as I don't see an h1 in the habit tracker, but it has to be given a distinct class or id becuase we use other h1 elsewhere */
-/* h1 {
-    margin: auto;
-    text-align: center;
-    color:black;
-  } */
-#grid-col {
-    display: grid;
-    grid-template-columns: auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto;
-    grid-gap: 5px;
-
-    /* scroll bar */
-    width: 45em;
-    overflow-x: auto;
-
-    /* position */
-    position: absolute;
-    left: 0;
-    right: 0;
-    top: 200px;
-    bottom: 125px;
-    margin: auto auto auto 400px;
-}
-
-.habitcell {
-    background-color: #fdf2f2;
-    border: 10px black;
-    padding: 5px;
-    color: #fdf2f2;
-    font-display: none;
-    height: 34.4px;
-}
-
-div.cell {
-    background-color: #fdf2f2;
-    border: 10px black;
-    padding: 5px;
-    color: #fdf2f2;
-    font-display: none;
-}
-
-.cellNUM {
-    text-align: center;
-}
-
-.wrapper {
-    display: grid;
-    grid-template-columns: auto;
-    grid-gap: 5px;
-    position: absolute;
-    left: auto;
-
-    top: 200px;
-    margin: auto;
-
-    text-align: left;
-
-    width: 10em;
-    overflow-x: auto;
-    border: 10px black;
-}
-
 .nav-wrapper {
     background-color: #8a3862;
-}
-
-.cellNUM1 {
-    color: white;
-}
+  }
+  
+  #HabitTitle {
+    font-size: 120px;
+    font-family: "Akronim", cursive;
+    text-align: center;
+    color: #3f818a;
+    /* margin-top: 5%; */
+  }
+  
+  #sub-grid {
+    display: grid;
+    grid-template-columns: auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto;
+    grid-gap: 5px;
+    width: 50em;
+    overflow-x: scroll;
+  
+  
+   
+    left:0; right:0;
+    top:200px; bottom:50px;
+    margin:auto;
+  
+  }
+  
+  #sub-grid div.fixedToLeft{
+    position: sticky;
+    left: 0;
+    z-index: 10;
+  }
+  #sub-grid div.spancol {
+    grid-column-start: 1;
+    grid-column-end: 5;
+    background-color: rgb(250, 255, 203);
+  
+  }
+  #sub-grid div.nocolor {
+    background-color: white;
+  }
+  
+  
+  div.cell {
+    background-color: #FDF2F2;
+    border: 10px black;
+    padding: 5px;
+    color: #FDF2F2;
+    font-display: none;
+  }
+    
+  .cellNUM {
+    text-align: center; 
+    background-color: white; 
+  }
+  .cellNUM2 {
+    text-align: center; 
+    background-color: white;
+    color: white; 
+  }
 
 /* media screens */
 @media screen and (max-width: 410px) {
