@@ -348,7 +348,107 @@ $(document).ready(function() {
         e.preventDefault();
         $(".modal").modal();
     });
-
+    $(".submitButton3").on("click", function(e) {
+        e.preventDefault();
+        const habSelect = $(".habSelect").val();
+        let habArray = [];
+        let habitMonth = "";
+        switch (habSelect) {
+            case "1":
+                habitMonth = "January";
+                break;
+            case "2":
+                habitMonth = "February";
+                break;
+            case "3":
+                habitMonth = "March";
+                break;
+            case "4":
+                habitMonth = "April";
+                break;
+            case "5":
+                habitMonth = "May";
+                break;
+            case "6":
+                habitMonth = "June";
+                break;
+            case "7":
+                habitMonth = "July";
+                break;
+            case "8":
+                habitMonth = "August";
+                break;
+            case "9":
+                habitMonth = "September";
+                break;
+            case "10":
+                habitMonth = "October";
+                break;
+            case "11":
+                habitMonth = "November";
+                break;
+            case "12":
+                habitMonth = "December";
+                break;
+            default:
+                habitMonth = "";
+                break;
+        }
+        habArray.push(habitMonth);
+        const hab1 = $("#textarea-habit1").val();
+        if (!hab1) {
+            habArray.push(hab1);
+        } else {
+            habArray.push(hab1);
+        }
+        const hab2 = $("#textarea-habit2").val();
+        if (!hab2) {
+            habArray.push(hab2);
+        } else {
+            habArray.push(hab2);
+        }
+        const hab3 = $("#textarea-habit3").val();
+        if (!hab3) {
+            habArray.push(hab3);
+        } else {
+            habArray.push(hab3);
+        }
+        const hab4 = $("#textarea-habit4").val();
+        if (!hab4) {
+            habArray.push(hab4);
+        } else {
+            habArray.push(hab4);
+        }
+        const hab5 = $("#textarea-habit5").val();
+        if (!hab5) {
+            habArray.push(hab5);
+        } else {
+            habArray.push(hab5);
+        }
+        const hab6 = $("#textarea-habit6").val();
+        if (!hab6) {
+            habArray.push(hab6);
+        } else {
+            habArray.push(hab6);
+        }
+        const hab7 = $("#textarea-habit7").val();
+        if (!hab7) {
+            habArray.push(hab7);
+        } else {
+            habArray.push(hab7);
+        }
+        const hab8 = $("#textarea-habit8").val();
+        if (!hab8) {
+            habArray.push(hab8);
+        } else {
+            habArray.push(hab8);
+        }
+        $.ajax("api/newhabit/" + habArray, {
+            type: "POST"
+        }).then(function() {
+            location.reload();
+        });
+    });
     // ------------------- COLLECTIONS ---------------------
     let mini1 = $("#mini1").text();
     let mini2 = $("#mini2").text();

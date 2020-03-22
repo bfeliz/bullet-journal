@@ -74,9 +74,20 @@ app.get("/dailyspread/:id", isAuthenticated, function(req, res) {
             id: req.params.id
         }
     }).then(function(data) {
-        console.log(data);
         res.render("bullet-notes", {
             collect: data
+        });
+    });
+});
+
+app.get("/habit/:id", isAuthenticated, function(req, res) {
+    db.Journal.findAll({
+        where: {
+            id: req.params.id
+        }
+    }).then(function(data) {
+        res.render("habits", {
+            habit: data
         });
     });
 });

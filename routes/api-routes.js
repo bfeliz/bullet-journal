@@ -139,4 +139,37 @@ module.exports = function(app) {
                 .catch(err => console.log(err));
         }
     });
+    app.post("/api/newhabit/:habit", async function(req, res) {
+        try {
+            let hab = req.params.habit;
+            let habArray = hab.split(",");
+            await monthlyCreate(habArray);
+        } catch (err) {
+            console.log(err);
+        }
+
+        function monthlyCreate(data) {
+            db.Journal.create({
+                name: data[0],
+                hab1Name: data[1],
+                hab2Name: data[2],
+                hab3Name: data[3],
+                hab4Name: data[4],
+                hab5Name: data[5],
+                hab6Name: data[6],
+                hab7Name: data[7],
+                hab8Name: data[8],
+                hab9Name: data[9]
+            })
+                .then(function(answers) {
+                    db.Pages.create({
+                        name: answers.dataValues.name + " " + "Habit Tracker",
+                        type: "habit",
+                        typeId: answers.dataValues.id
+                    });
+                    res.json(answers);
+                })
+                .catch(err => console.log(err));
+        }
+    });
 };
