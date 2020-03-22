@@ -29,10 +29,10 @@ require("./routes/api-routes.js")(app);
 
 // Set Handlebars.
 
-const datesArray = [];
-for (let i = 1; i < moment().daysInMonth() + 1; i++) {
-    datesArray.push({ date: i });
-}
+// const datesArray = [];
+// for (let i = 1; i < moment().daysInMonth() + 1; i++) {
+//     datesArray.push({ date: i });
+// }
 var exphbs = require("express-handlebars");
 app.engine(
     "handlebars",
@@ -50,14 +50,22 @@ app.engine(
 app.set("view engine", "handlebars");
 
 app.get("/monthly/:id", isAuthenticated, function(req, res) {
-    db.Monthly.findAll({
+    const datesArray = []
+    db.Monthly.findOne({
         where: {
             id: req.params.id
-        }
+        },
+        include: [db.Tasks]
     }).then(function(data) {
+       
+        data.Tasks.forEach(element => {
+            datesArray.push(element.dataValues)    
+        })
+        
         res.render("monthly", {
             dates: moment,
-            month: data
+            months: data.dataValues,
+            datesParse: datesArray
         });
     });
 });

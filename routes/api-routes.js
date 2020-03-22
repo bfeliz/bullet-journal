@@ -84,60 +84,67 @@ module.exports = function (app) {
             res.json(data);
         });
     });
+
+    app.put("/api/saveTask/:id/:val", function (req, res) {
+        console.log(req.params.id)
+         db.Tasks.update(
+            {
+                value: req.params.val
+            },
+            {
+                where: { id: req.params.id }
+            }
+        ).then(function (data) {
+            res.json(data);
+        }).catch(err => console.log(err));
+    });
+   
+   
+   
     app.post("/api/newmonthly/:chosen", async function (req, res) {
         try {
-            await monthlyCreate();
+            const month = await monthlyCreate();
+            
+            res.render("monthly")
         } catch (err) {
             console.log(err);
         }
-
-        function monthlyCreate() {
-            db.Monthly.create({
-                month: req.params.chosen,
-                year: moment().get("year")
+    
+   async function monthlyCreate() {
+        db.Monthly.create({
+            month: req.params.chosen,
+            year: moment().get("year")
+        }).then(function (answers) {
+            db.Pages.create({
+                name: answers.dataValues.month + " " + "Monthly Spread",
+                type: "monthly",
+                typeId: answers.dataValues.id
             })
-                .then(function (answers) {
-                    db.Pages.create({
-                        name: answers.dataValues.month + " " + "Monthly Spread",
-                        type: "monthly",
-                        typeId: answers.dataValues.id
-                    })
-                }).then(answers => {
-                    console.log("answers")
-                        const daysInChosenMonth = moment().month(req.params.chosen).format("M")
-                        const daysInMonth = moment(`2020-${daysInChosenMonth}`, "YYYY-MM").daysInMonth()
-                        console.log(daysInMonth)
-                        db.Monthly.findOne({where:{
-                            month: req.params.chosen
-                        }}).then(answers => {
-                            console.log(answers)
-                            for (let i = 1; i < daysInMonth + 1; i++) {
-                                db.Tasks.create({
-                                    date: i,
-                                    MonthlyId: answers.id
-                                })
-                            }
-                        }).then(answers => {
-                    res.json(answers);
-                    }).catch(err => console.log(err));
+            const daysInChosenMonth = moment().month(req.params.chosen).format("M")
+            const daysInMonth = moment(`2020-${daysInChosenMonth}`, "YYYY-MM").daysInMonth()
+            for (let i = 1; i < daysInMonth + 1; i++) {
+                db.Tasks.create({
+                    date: i,
+                    MonthlyId: answers.dataValues.id,
+                }).catch(err=> console.log(err))
+            }
+})
 
-                        
-                    }
+   }
+})
 
-                
-                
-        
-    });
+
+
     app.post("/api/newcollection/:collect", async function (req, res) {
         try {
             let test = req.params.collect;
             let finalArray = test.split(",");
-            await monthlyCreate(finalArray);
+            await postCreate(finalArray);
         } catch (err) {
             console.log(err);
         }
 
-        function monthlyCreate(data) {
+        function postCreate(data) {
             db.Posts.create({
                 name: data[0],
                 sub1Name: data[1],
@@ -160,16 +167,17 @@ module.exports = function (app) {
                 .catch(err => console.log(err));
         }
     });
-    app.post("/api/newhabit/:habit", async function(req, res) {
+    
+    app.post("/api/newhabit/:habit", async function (req, res) {
         try {
             let hab = req.params.habit;
             let habArray = hab.split(",");
-            await monthlyCreate(habArray);
+            await habCreate(habArray);
         } catch (err) {
             console.log(err);
         }
 
-        function monthlyCreate(data) {
+        function habCreate(data) {
             db.Journal.create({
                 name: data[0],
                 hab1Name: data[1],
@@ -182,7 +190,7 @@ module.exports = function (app) {
                 hab8Name: data[8],
                 hab9Name: data[9]
             })
-                .then(function(answers) {
+                .then(function (answers) {
                     db.Pages.create({
                         name: answers.dataValues.name + " " + "Habit Tracker",
                         type: "habit",
@@ -193,5 +201,5 @@ module.exports = function (app) {
                 .catch(err => console.log(err));
         }
     });
-};
-};
+}
+

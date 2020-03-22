@@ -4,7 +4,11 @@ module.exports = function (sequelize, DataTypes) {
         date: {
             type: DataTypes.STRING,
             allowNull: false,
-            unique: true,
+        },
+
+        value: {
+            type: DataTypes.STRING,
+            allowNull: true
         }
     })
     Tasks.associate = function (models) {
