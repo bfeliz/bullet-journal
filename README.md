@@ -1,70 +1,59 @@
 
 # Bullet Journal
 
-## Requirements
-___________
+## Description
+____________________________________________________________
 
-1. User Login, Password (DB Storage {secured})
-2. A few templates for commonly used items 
-   (habit tracker, monthly spread, daily spread, calendar(API))
-3. Index
-4. Video describing how Bullet Journaling works (https://www.youtube.com/watch?v=fm15cmYU0IM)
+An application that accepts user input into a bullet journal format to organzine one's tasks.
 
+The user creates an account with an email and password, then they are presented with the main screen of the app.
 
-
-## Additional Feature Requirements
-______________
-
-1. Image storage and usage (upload?)
-2. Bullet-esque stylings
-3. Ability to handwrite
-4. Share website (referral)
-
-
-## APIs
-______
-
-1. Text Recognition
-2. FullCalendar (calendar)
-3. Authentication (Passport JS)
-4. Moment.js
-
-## Team Responsibilities
-____
-
- - Dane: Routing/SQL
- - Dennis: UI/UX Designer -> Handlebars/Templating
- - Brittany: Front End Development
- - Kenneth: User Authentication/Security 
-
-
-
-## User Story
-___
-
-AS a person who has no executive functioning<br>
-AS a person who has the artistic ability of a peanut<br>
-I want to suceed at life USING a bullet journal<br>
-AND make it look nice<br>
-WHEN it is easily accessible<br>
-
-## Flow
-___
-
-### I am prompted to login (user table containing usernames and passwords) 
-1. CREATE method for new user 
-   - CHECK IF USER EXISTS statement AND has password
-2. When I login, I am brought to an overview/big picture
-   which contains an index and ~~user-configurable dashboard~~ Monthly/Daily Spread (contains tasks)
-    - USER has one INDEX 
-    - USER HAS MANY POSTS, MONTHLY SPREADS, DAILY SPREADS, TASKS
-    - CHECK to see if user has a current daily spread (prompt for one if not)
-3. I can click on pages in the index and go to a place
-   - Each POST/INDEX OBJECT has a rendered page/api route?
-4. I can update the status of tasks (add, whiteout/strikethrough, update)
-5. I can "quick create" something and assign it an index position
-6. Move tasks
+The user can then add tasks/goals to the different sections in the journal that are then saved onto an index page.  The user can add tasks/goals by day or month and also add habits to a monthly habit tracker where they can keep daily track of habit completion.
 
 
 ## UI Mockup
-https://xd.adobe.com/view/8707e389-02ff-474e-77cb-9ee294cdc72c-f136/
+____________________________________________________________
+Application overview [here](https://xd.adobe.com/view/8707e389-02ff-474e-77cb-9ee294cdc72c-f136/)
+
+
+## Try it yourself!
+____________________________________________________________
+Click [here](https://github.com/bfeliz/bullet-journal) for project demo.
+
+
+## Getting Started
+____________________________________________________________
+
+Application runs in browser.
+
+
+## Built With
+____________________________________________________________
+
+Javascript <br>
+Jquery.js <br>
+Moment.js <br>
+Node.js <br>
+Passport.js <br>
+Handlebars <br>
+Sequelize <br>
+Adobe xd <br>
+Materialize <br>
+Calender -API <br>
+
+
+## Authors
+____________________________________________________________
+
+Brittany Fortner <br>
+Dane Burns <br>
+Dennis Amparo <br>
+Kenneth Achumahara <br>
+
+See commit history [here](https://github.com/bfeliz/bullet-journal/graphs/contributors).
+
+
+## Planned Updates
+____________________________________________________________
+
+Future updates would include making the app more user friendly by having a personalized  welcome page for the user, ability to upload picture events, reminders (Doctor's appointment, flight schedule etc.), archive old monthly spreads/collections/habits, ability to handwrite, and share website (referral).
