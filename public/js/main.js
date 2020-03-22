@@ -2,7 +2,24 @@ $(document).ready(function() {
     // ---------------- MAIN HANDLEBARS NAVBAR ---------------
     // to run sidenav when on mobile or small screens
     $(".sidenav").sidenav();
-
+    // --------------COLLECTIONS---------------------
+$('textarea').change(function(e){
+    const windowLoc = window.location.href
+    console.log(windowLoc)
+    if(windowLoc.includes('daily')){
+    const val = ($(this).val())
+    const id = $(this).attr("id")
+    console.log(id)
+    const p = "api/saveCollectionItem/" + id + "/" + val
+    console.log(p)
+    $.ajax("/api/saveCollectionItem/" + id + "/" + val, {
+        type: "PUT",
+    
+    }).then(function(e) {
+        location.reload();
+    });
+}
+})
     // ----------------------- MONTHLY ------------------------
     function getPage() {
         console.log("yeet");
@@ -24,6 +41,8 @@ $(document).ready(function() {
         });
     }
     })
+
+
     
     $(".currentMonthlies").on("click", function(e) {
         console.log(event.target.classList);
@@ -325,35 +344,35 @@ $(document).ready(function() {
         array.push(collect);
         const colsub1 = $("#textarea-collect2").val();
         if (!colsub1) {
-            array.push(colsub1);
-            array.push(false);
+            // array.push(colsub1);
+            
         } else {
             array.push(colsub1);
-            array.push(true);
+            // array.push(true);
         }
         const colsub2 = $("#textarea-collect3").val();
         if (!colsub2) {
-            array.push(colsub2);
-            array.push(false);
+            // array.push(colsub2);
+            
         } else {
             array.push(colsub2);
-            array.push(true);
+            // array.push(true);
         }
         const colsub3 = $("#textarea-collect4").val();
         if (!colsub3) {
-            array.push(colsub3);
-            array.push(false);
+            // array.push(colsub3);
+            // array.push(false);
         } else {
             array.push(colsub3);
-            array.push(true);
+            // array.push(true);
         }
         const colsub4 = $("#textarea-collect5").val();
         if (!colsub4) {
-            array.push(colsub4);
-            array.push(false);
+            // array.push(colsub4);
+            // array.push(false);
         } else {
             array.push(colsub4);
-            array.push(true);
+            // array.push(true);
         }
         $.ajax("api/newcollection/" + array, {
             type: "POST"

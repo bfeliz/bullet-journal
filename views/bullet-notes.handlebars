@@ -1,16 +1,16 @@
-{{#each collect}}
-<h1 class="collection">{{dataValues.name}}</h1>
-{{/each}}
+
+<h1 class="collection">{{postName}}</h1>
+
 
 <div class="row collection-row">
   <div class="col s12 m12 l6">
-    {{#each collect}}
-    <h2 class="mini-collection" id="mini1">{{dataValues.sub1Name}}</h2>
-    {{/each}}
+    {{#each subCat}}
+    <h2 class="mini-collection" id="mini1">{{subName}}</h2>
     <div class="input-field col s12" id="area1">
-      <textarea id="textarea2" class="materialize-textarea"></textarea>
-      <label for="textarea2"></label>
+      <textarea id="{{id}}" class="materialize-textarea">{{subValue}}</textarea>
+      <label for="textarea3"></label>
     </div>
+    {{/each}}
     <br>
     <br>
     <br>
@@ -23,19 +23,23 @@
     {{#each collect}}
     <h2 class="mini-collection" id="mini2">{{dataValues.sub2Name}}</h2>
     {{/each}}
+    {{#each collect}}
     <div class="input-field col s12" id="collect-bottom2">
-      <textarea id="textarea2" class="materialize-textarea"></textarea>
+      <textarea id="{{dataValues.sub2Name}}" class="materialize-textarea">{{dataValues.sub2Value}}</textarea>
       <label for="textarea2"></label>
     </div>
+    {{/each}}
   </div>
   <div class="col s12 m12 l6" id="collect-bottom">
     {{#each collect}}
     <h2 class="mini-collection" id="mini3">{{dataValues.sub3Name}}</h2>
     {{/each}}
+    {{#each collect}}
     <div class="input-field col s12" id="area2">
-      <textarea id="textarea2" class="materialize-textarea"></textarea>
+      <textarea id="{{sub3Name.id}}" class="materialize-textarea">{{dataValues.sub3Value}}</textarea>
       <label for="textarea2"></label>
     </div>
+    {{/each}}
     <br>
     <br>
     <br>
@@ -48,9 +52,11 @@
     {{#each collect}}
     <h2 class="mini-collection" id="mini4">{{dataValues.sub4Name}}</h2>
     {{/each}}
+    {{#each collect}}
     <div class="input-field col s12" id="collect-bottom3">
-      <textarea id="textarea2" class="materialize-textarea"></textarea>
+      <textarea id="{{sub4Name.id}}" class="materialize-textarea">{{dataValues.sub4Value}}</textarea>
       <label for="textarea2"></label>
     </div>
+    {{/each}}
   </div>
 </div>
