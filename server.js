@@ -56,7 +56,7 @@ app.get("/monthly/:id", isAuthenticated, function(req, res) {
         }
     }).then(function(data) {
         res.render("monthly", {
-            dates: datesArray,
+            dates: moment,
             month: data
         });
     });
