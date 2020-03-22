@@ -16,11 +16,11 @@ module.exports = function (sequelize, DataTypes) {
         //         allowNull: false
         //     }
         // })
-        // Monthly.hasMany(models.Daily, {
-        //     foreignKey: {
-        //         allowNull: false
-        //     }
-        // }) 
+        Monthly.hasMany(models.Tasks, {
+            foreignKey: {
+                allowNull: false
+            }
+        }) 
 }
 return Monthly;
 }

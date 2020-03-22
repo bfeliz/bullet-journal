@@ -1,14 +1,18 @@
 module.exports = function (sequelize, DataTypes) {
     var Tasks = sequelize.define("Tasks", {
         // The email cannot be null, and must be a proper email before creation
-        name: {
+        date: {
             type: DataTypes.STRING,
             allowNull: false,
-            unique: true,
+        },
+
+        value: {
+            type: DataTypes.STRING,
+            allowNull: true
         }
     })
     Tasks.associate = function (models) {
-        Tasks.belongsTo(models.Daily, {
+        Tasks.belongsTo(models.Monthly, {
             foreignKey: {
                 allowNull: false
             }
