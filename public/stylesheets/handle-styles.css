@@ -68,7 +68,6 @@ body {
 }
 .datepicker .ui-datepicker-header {
     height: 250px;
-    background-image: url(../assets/march.jpg);
     background-size: cover;
     background-repeat: no-repeat;
 }
@@ -147,6 +146,7 @@ textarea.materialize-textarea {
     margin-bottom: 60%;
 }
 .mini-collection {
+    font-family: "Shadows Into Light", cursive;
     text-align: center;
     color: #58c7d6;
 }
@@ -202,7 +202,6 @@ textarea.materialize-textarea {
     padding: 5px;
     color: #FDF2F2;
     font-display: none;
-  
   }
     
   .cellNUM {
@@ -214,6 +213,7 @@ textarea.materialize-textarea {
     background-color: white;
     color: white; 
   }
+
 /* media screens */
 @media screen and (max-width: 410px) {
     #logo {

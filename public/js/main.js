@@ -4,10 +4,10 @@ $(document).ready(function() {
     $(".sidenav").sidenav();
 
     // ----------------------- MONTHLY ------------------------
-    // necessary to render calendar correctly
     function getPage() {
         console.log("yeet");
     }
+
     $(".currentMonthlies").on("click", function(e) {
         console.log(event.target.classList);
 
@@ -16,6 +16,107 @@ $(document).ready(function() {
         console.log(innerText);
         //ajax request using params sent from here
     });
+
+    // set calendar to match month
+    $(".datepicker").datepicker({
+        prevText: '<i class="fa fa-fw fa-angle-left"></i>',
+        nextText: '<i class="fa fa-fw fa-angle-right"></i>'
+    });
+    let calMonth = $(".month").text();
+
+    switch (calMonth) {
+        case "January 2020":
+            $(".datepicker").datepicker("setDate", "01/01/2020");
+            $(".ui-datepicker-header").css(
+                "background-image",
+                "url(../assets/jan.jpg)"
+            );
+            break;
+        case "February 2020":
+            $(".datepicker").datepicker("setDate", "02/01/2020");
+            $(".ui-datepicker-header").css(
+                "background-image",
+                "url(../assets/feb.jpg)"
+            );
+            break;
+        case "March 2020":
+            $(".datepicker").datepicker("setDate", "03/01/2020");
+            $(".ui-datepicker-header").css(
+                "background-image",
+                "url(../assets/march.jpg)"
+            );
+            break;
+        case "April 2020":
+            $(".datepicker").datepicker("setDate", "04/01/2020");
+            $(".ui-datepicker-header").css(
+                "background-image",
+                "url(../assets/april.jpg)"
+            );
+            break;
+        case "May 2020":
+            $(".datepicker").datepicker("setDate", "05/01/2020");
+            $(".ui-datepicker-header").css(
+                "background-image",
+                "url(../assets/may.jpg)"
+            );
+            break;
+        case "June 2020":
+            $(".datepicker").datepicker("setDate", "06/01/2020");
+            $(".ui-datepicker-header").css(
+                "background-image",
+                "url(../assets/june.jpg)"
+            );
+            break;
+        case "July 2020":
+            $(".datepicker").datepicker("setDate", "07/01/2020");
+            $(".ui-datepicker-header").css(
+                "background-image",
+                "url(../assets/july.jpg)"
+            );
+            break;
+        case "August 2020":
+            $(".datepicker").datepicker("setDate", "08/01/2020");
+            $(".ui-datepicker-header").css(
+                "background-image",
+                "url(../assets/aug.jpg)"
+            );
+            break;
+        case "September 2020":
+            $(".datepicker").datepicker("setDate", "09/01/2020");
+            $(".ui-datepicker-header").css(
+                "background-image",
+                "url(../assets/sept.jpg)"
+            );
+            break;
+        case "October 2020":
+            $(".datepicker").datepicker("setDate", "10/01/2020");
+            $(".ui-datepicker-header").css(
+                "background-image",
+                "url(../assets/oct.jpg)"
+            );
+            break;
+        case "November 2020":
+            $(".datepicker").datepicker("setDate", "11/01/2020");
+            $(".ui-datepicker-header").css(
+                "background-image",
+                "url(../assets/nov.jpg)"
+            );
+            break;
+        case "December 2020":
+            $(".datepicker").datepicker("setDate", "12/01/2020");
+            $(".ui-datepicker-header").css(
+                "background-image",
+                "url(../assets/dec.jpg)"
+            );
+            break;
+        default:
+            $(".datepicker").datepicker();
+            $(".ui-datepicker-header").css(
+                "background-image",
+                "url(../assets/default.jpg)"
+            );
+            break;
+    }
     // $('.currentMonthlies').on("click", function(e){
     //     console.log(event.target.classList)
 
@@ -38,23 +139,11 @@ $(document).ready(function() {
 
     const $currentDaily = $(".currentDailies");
 
-    $(".datepicker").datepicker({
-        // required to hide arrow functionality
-        prevText: '<i class="fa fa-fw fa-angle-left"></i>',
-        nextText: '<i class="fa fa-fw fa-angle-right"></i>'
-    });
-
-    // $("#SetMonth").click(function(){SetMonth(parseInt($('#month').val())-1);}); //January = month # 0
-    //    $("#datepicker").datepicker();
-    //    $("#datepicker").datepicker("setDate",new Date());
+    // $(".datepicker").datepicker({
+    //     // required to hide arrow functionality
+    //     prevText: '<i class="fa fa-fw fa-angle-left"></i>',
+    //     nextText: '<i class="fa fa-fw fa-angle-right"></i>'
     // });
-
-    // function SetMonth(month)
-    // {
-    //     var date = $("#datepicker").datepicker( 'getDate' );
-    //     date.setMonth(month);
-    //     $("#datepicker").datepicker("setDate", date);
-    // }
 
     // ---------------- HABIT TRACKER --------------------
     // add button to each cell
@@ -259,6 +348,26 @@ $(document).ready(function() {
         e.preventDefault();
         $(".modal").modal();
     });
-});
 
-/*  */
+    // ------------------- COLLECTIONS ---------------------
+    let mini1 = $("#mini1").text();
+    let mini2 = $("#mini2").text();
+    let mini3 = $("#mini3").text();
+    let mini4 = $("#mini4").text();
+    if (!mini1) {
+        $("#mini1").addClass("hide");
+        $("#area1").addClass("hide");
+    }
+    if (!mini2) {
+        $("#mini2").addClass("hide");
+        $("#collect-bottom2").addClass("hide");
+    }
+    if (!mini3) {
+        $("#mini3").addClass("hide");
+        $("#area2").addClass("hide");
+    }
+    if (!mini4) {
+        $("#mini4").addClass("hide");
+        $("#collect-bottom3").addClass("hide");
+    }
+});
