@@ -10,6 +10,10 @@ const db = require("./models");
 
 const app = express();
 
+const morgan = require("morgan");
+
+app.use(morgan("combined"));
+
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(express.static("public"));
