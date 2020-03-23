@@ -1,13 +1,12 @@
 $(document).ready(function() {
-    // Getting references to our form and inputs
-    var loginForm = $("form.login");
-    var emailInput = $("input#email-input");
-    var passwordInput = $("input#password-input");
+    const loginForm = $("form.login");
+    const emailInput = $("input#email-input");
+    const passwordInput = $("input#password-input");
 
-    // When the form is submitted, we validate there's an email and password entered
+    // validate
     loginForm.on("submit", function(event) {
         event.preventDefault();
-        var userData = {
+        const userData = {
             email: emailInput.val().trim(),
             password: passwordInput.val().trim()
         };
@@ -22,7 +21,6 @@ $(document).ready(function() {
         passwordInput.val("");
     });
 
-    // loginUser does a post to our "api/login" route and if successful, redirects us the the members page
     function loginUser(email, password) {
         $.post("/api/login", {
             email: email,
@@ -30,9 +28,8 @@ $(document).ready(function() {
         })
             .then(function() {
                 window.location.replace("/members");
-                // If there's an error, log the error
             })
-            .fail(function(err) {
+            .fail(function() {
                 M.toast({
                     html:
                         "Hmm, having some issues logging you in. Have you signed up before? If not, please go to the signin page. Otherwise, check to make sure you entered your username and password correctly.",

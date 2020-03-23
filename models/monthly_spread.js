@@ -1,26 +1,20 @@
-module.exports = function (sequelize, DataTypes) {
-    var Monthly = sequelize.define("Monthly", {
-        // The email cannot be null, and must be a proper email before creation
+module.exports = function(sequelize, DataTypes) {
+    const Monthly = sequelize.define("Monthly", {
         month: {
             type: DataTypes.STRING,
-            allowNull: false,
+            allowNull: false
         },
         year: {
             type: DataTypes.INTEGER,
-            allowNull: false,
+            allowNull: false
         }
-    })
-    Monthly.associate = function (models) {
-        // Monthly.belongsTo(models.Journal, {
-        //     foreignKey: {
-        //         allowNull: false
-        //     }
-        // })
+    });
+    Monthly.associate = function(models) {
         Monthly.hasMany(models.Tasks, {
             foreignKey: {
                 allowNull: false
             }
-        }) 
-}
-return Monthly;
-}
+        });
+    };
+    return Monthly;
+};
