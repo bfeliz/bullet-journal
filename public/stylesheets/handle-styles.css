@@ -171,9 +171,7 @@ textarea.materialize-textarea {
     display: grid;
     grid-template-columns: auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto;
     grid-gap: 5px;
-    width: 50em;
     overflow-x: scroll;
-
     left: 0;
     right: 0;
     top: 200px;
@@ -225,6 +223,9 @@ div.cell {
     }
     .month-title {
         font-size: 5vw;
+    }
+    #HabitTitle {
+        font-size: 15vw;
     }
 }
 @media screen and (max-width: 600px) {
