@@ -45,9 +45,9 @@ module.exports = function(app) {
 
     // post new dailies
     app.post("/api/newdaily", function(req, res) {
-        console.log(req);
         db.Daily.create({
-            name: req.body.name
+            name: req.body.name,
+            UserId: req.user.id
         }).then(function(data) {
             res.json(data);
         });
@@ -55,14 +55,22 @@ module.exports = function(app) {
 
     // get dailies
     app.get("/api/alldailies", function(req, res) {
-        db.Daily.findAll({}).then(function(data) {
+        db.Daily.findAll({
+            where: {
+                UserId: req.user.id
+            }
+        }).then(function(data) {
             res.json(data);
         });
     });
 
-    // get main page
+    // get main page links to collections/monthlies
     app.get("/api/pages", function(req, res) {
-        db.Pages.findAll({}).then(function(data) {
+        db.Pages.findAll({
+            where: {
+                UserId: req.user.id
+            }
+        }).then(function(data) {
             res.json(data);
         });
     });
@@ -83,7 +91,6 @@ module.exports = function(app) {
 
     // save tasks
     app.put("/api/saveTask/:id/:val", function(req, res) {
-        console.log(req.params.id);
         db.Tasks.update(
             {
                 value: req.params.val
@@ -124,12 +131,14 @@ module.exports = function(app) {
         async function monthlyCreate() {
             db.Monthly.create({
                 month: req.params.chosen,
-                year: moment().get("year")
+                year: moment().get("year"),
+                UserId: req.user.id
             }).then(function(answers) {
                 db.Pages.create({
                     name: answers.dataValues.month + " " + "Monthly Spread",
                     type: "monthly",
-                    typeId: answers.dataValues.id
+                    typeId: answers.dataValues.id,
+                    UserId: req.user.id
                 });
                 const daysInChosenMonth = moment()
                     .month(req.params.chosen)
@@ -165,7 +174,8 @@ module.exports = function(app) {
         async function postCreate(data) {
             try {
                 await db.Posts.create({
-                    name: data[0]
+                    name: data[0],
+                    UserId: req.user.id
                 });
                 return data[0];
             } catch (err) {
@@ -177,7 +187,8 @@ module.exports = function(app) {
                 const gerb2 = db.Pages.create({
                     name: data.dataValues.name + " " + "Collection",
                     type: "dailyspread",
-                    typeId: data.dataValues.id
+                    typeId: data.dataValues.id,
+                    UserId: req.user.id
                 });
                 return gerb2;
             } catch (err) {
@@ -234,7 +245,8 @@ module.exports = function(app) {
                     db.Pages.create({
                         name: answers.dataValues.name + " " + "Habit Tracker",
                         type: "habit",
-                        typeId: answers.dataValues.id
+                        typeId: answers.dataValues.id,
+                        UserId: req.user.id
                     });
                     res.json(answers);
                 })

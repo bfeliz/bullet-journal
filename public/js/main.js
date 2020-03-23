@@ -229,10 +229,10 @@ $(document).ready(function() {
         if (data.length !== 0) {
             for (let i = 0; i < data.length; i++) {
                 if (data[i].completed == false) {
-                    let listItem = `<li class='dailyli' data-id='${i}'>${data[i].name}</li>`;
+                    let listItem = `<li class='dailyli' data-id='${data[i].id}'>${data[i].name}</li>`;
                     $(listItem).appendTo(".currentDailies");
                 } else if (data[i].completed == true) {
-                    let listItem = `<li class='dailyli' data-id='${i}' style='text-decoration:line-through;'>${data[i].name}</li>`;
+                    let listItem = `<li class='dailyli' data-id='${data[i].id}' style='text-decoration:line-through;'>${data[i].name}</li>`;
                     $(listItem).appendTo(".currentDailies");
                 }
             }
@@ -241,7 +241,8 @@ $(document).ready(function() {
         // strikethrough finished task
         $(".dailyli").on("click", function() {
             $(this).css("text-decoration", "line-through");
-            const $dataId = parseInt($(this).attr("data-id")) + 1;
+            const $dataId = parseInt($(this).attr("data-id"));
+            console.log($dataId);
             $.ajax("/api/modifydaily/" + $dataId, {
                 type: "PUT",
                 data: $dataId
@@ -270,7 +271,6 @@ $(document).ready(function() {
             case "2":
                 chosen = "February";
                 break;
-
             case "3":
                 chosen = "March";
                 break;
