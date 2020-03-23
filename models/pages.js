@@ -13,5 +13,12 @@ module.exports = function(sequelize, DataTypes) {
             allowNull: false
         }
     });
+    Pages.associate = function(models) {
+        Pages.belongsTo(models.User, {
+            foreignKey: {
+                allowNull: false
+            }
+        });
+    };
     return Pages;
 };

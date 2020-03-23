@@ -10,5 +10,12 @@ module.exports = function(sequelize, DataTypes) {
             defaultValue: false
         }
     });
+    Daily.associate = function(models) {
+        Daily.belongsTo(models.User, {
+            foreignKey: {
+                allowNull: false
+            }
+        });
+    };
     return Daily;
 };

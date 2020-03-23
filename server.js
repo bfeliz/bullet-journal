@@ -71,7 +71,6 @@ app.get("/dailyspread/:id", isAuthenticated, function(req, res) {
         data.Subcats.forEach(element => {
             subcatsArray.push(element.dataValues);
         });
-        console.log(data.dataValues.Subcats);
         res.render("bullet-notes", {
             postName: data.dataValues.name,
             subCat: subcatsArray
