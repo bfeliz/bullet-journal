@@ -229,49 +229,76 @@ module.exports = function (app) {
         try {
             let hab = req.params.habit;
             let habArray = hab.split(",");
+            console.log(habArray)
+            const promises = []
             // const postName = postCreate(finalArray)
-            const habTrack = await habitTrackerCreate(habArray)
+            await habitTrackerCreate(habArray)
             const trackerFind = await findDataz(habArray)
-            const promiseReturned = await pageCreatorz(trackerFind)
-            const habcats = await habitCatCreate(habArray, trackerFind)
+            await pageCreatorz(trackerFind)
+            await habitCatCreate(habArray, trackerFind)
             const habCatData = await findHabitCat(trackerFind)
-            const makinBoxes = await createBoxesForCats(habCatData)
-          
-                
-           
+            await createBoxesForCats(habCatData)
+
+
+
             // const postName = await postCreate(habArray)
             // const hoops = makeDates(postName)
 
-            res.render("habits", {
+            // res.render("habits", {
 
-            })
+            // })
             // await plop
             // console.log(plop)
         }
         catch (err) { console.log(err) }
 
         function habitTrackerCreate(month) {
-            db.HabitTracker.create({
+            return db.HabitTracker.create({
                 name: month[0]
             })
-            return
+
         }
 
-        function habitCatCreate(habArray, monthFindRequest) {
-            for (let i = 1; i < habArray.length; i++) {
-                if (habArray[i] != '')
-                    db.HabitCat.create({
-                        category: habArray[i],
-                        HabitTrackerId: monthFindRequest.dataValues.id
+        // function habitCatCreate(habArray, monthFindRequest) {
 
-                    })
-                    return
+        //     const newArray = habArray.filter(function(array) 
+        //     {
+        //             return value != null && != habArray[0]  
+        //     })
+        function habitCatCreate(habArray, trackerId) {
+            habArray.shift()
 
-            }
+            const arr = habArray.filter(function (habits) {
+                return habits != ""
+            }).map(element =>
+                db.HabitCat.create({
+                    category: element,
+                    HabitTrackerId: trackerId.dataValues.id
+                })
+            )
+            return Promise.all(arr);
+
         }
 
+        // function => for each item that != february, create a database object
 
-         function findDataz(a) {
+        // return Promise.all(function1, function2, function3)
+        // for (let i = 1; i < habArray.length; i++) {
+        //     const promiseArray = []
+        //     if (habArray[i] != '')
+        //         db.HabitCat.create({
+        //             category: habArray[i],
+        //             HabitTrackerId: monthFindRequest.dataValues.id
+
+
+        //         }) 
+        //         promiseArray.push(i)         
+        //     }
+
+
+
+
+        function findDataz(a) {
             try {
                 const gerb3 = db.HabitTracker.findOne(
                     {
@@ -283,7 +310,7 @@ module.exports = function (app) {
             } catch (err) { console.log(err) }
         }
 
-         function pageCreatorz(data) {
+        function pageCreatorz(data) {
             try {
 
                 const gerb2 = db.Pages.create({
@@ -293,7 +320,7 @@ module.exports = function (app) {
 
                 })
                 return gerb2
-        
+
             } catch (err) { console.log(err) }
         }
         //  function findDataz(arr) {
@@ -308,7 +335,7 @@ module.exports = function (app) {
         //     } catch (err) { console.log(err) }
         // }
 
-        function findHabitCat(data){
+        function findHabitCat(data) {
             const datareturn = db.HabitCat.findAll({
                 where: {
                     HabitTrackerId: data.dataValues.id
@@ -321,14 +348,14 @@ module.exports = function (app) {
         function createBoxesForCats(data) {
             for (let index = 1; index < 32; index++) {
                 data.forEach(element => {
-                db.HabitBox.create({
-                    HabitCatId: element.dataValues.id,
-                    dayofmonth: index
+                    db.HabitBox.create({
+                        HabitCatId: element.dataValues.id,
+                        dayofmonth: index
+                    })
                 })
-            })
-        }
-                
-          
+            }
+
+
 
         };
     })
