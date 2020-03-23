@@ -1,144 +1,164 @@
 $(document).ready(function() {
     // ---------------- MAIN HANDLEBARS NAVBAR ---------------
+
     // to run sidenav when on mobile or small screens
     $(".sidenav").sidenav();
+
+    // ----------------------- SELECT------------------------
+
+    // necessary to render dropdown select menus correctly
+    $("select").formSelect();
+
     // --------------COLLECTIONS---------------------
-$('textarea').change(function(e){
-    const windowLoc = window.location.href
-    console.log(windowLoc)
-    if(windowLoc.includes('daily')){
-    const val = ($(this).val())
-    const id = $(this).attr("id")
-    console.log(id)
-    const p = "api/saveCollectionItem/" + id + "/" + val
-    console.log(p)
-    $.ajax("/api/saveCollectionItem/" + id + "/" + val, {
-        type: "PUT",
-    
-    }).then(function(e) {
-        location.reload();
+
+    // save collection items to database
+    $("textarea").change(function() {
+        const windowLoc = window.location.href;
+        if (windowLoc.includes("daily")) {
+            const val = $(this).val();
+            const id = $(this).attr("id");
+            const p = "api/saveCollectionItem/" + id + "/" + val;
+            $.ajax("/api/saveCollectionItem/" + id + "/" + val, {
+                type: "PUT"
+            }).then(function(e) {
+                e.preventDefault();
+                location.reload();
+            });
+        }
     });
-}
-})
+
+    // hide unused subcollections
+    let mini1 = $("#mini1").text();
+    let mini2 = $("#mini2").text();
+    let mini3 = $("#mini3").text();
+    let mini4 = $("#mini4").text();
+    if (!mini1) {
+        $("#mini1").addClass("hide");
+        $("#area1").addClass("hide");
+    }
+    if (!mini2) {
+        $("#mini2").addClass("hide");
+        $("#area2").addClass("hide");
+    }
+    if (!mini3) {
+        $("#mini3").addClass("hide");
+        $("#area3").addClass("hide");
+    }
+    if (!mini4) {
+        $("#mini4").addClass("hide");
+        $("#area4").addClass("hide");
+    }
+
     // ----------------------- MONTHLY ------------------------
-    function getPage() {
-        console.log("yeet");
-    }
-    $('textarea').change(function(e){
-        const windowLoc = window.location.href
-        console.log(windowLoc)
-        if(windowLoc.includes('monthly')){
-        console.log('yerp')
-        const val = ($(this).val())
-        const id = parseInt($(this).attr("id"))
-        const p = "api/saveTask/" + id + "/" + val
-        console.log(p)
-        $.ajax("/api/saveTask/" + id + "/" + val, {
-            type: "PUT",
-        }).then(function(e) {
-            console.log('nice')
-            location.reload();
-        });
-    }
-    })
 
+    // save monthly items to database
+    $("textarea").change(function() {
+        const windowLoc = window.location.href;
+        if (windowLoc.includes("monthly")) {
+            const val = $(this).val();
+            const id = parseInt($(this).attr("id"));
+            const p = "api/saveTask/" + id + "/" + val;
+            $.ajax("/api/saveTask/" + id + "/" + val, {
+                type: "PUT"
+            }).then(function(e) {
+                e.preventDefault();
+                location.reload();
+            });
+        }
+    });
 
-    
-    $(".currentMonthlies").on("click", function(e) {
-        console.log(event.target.classList);
-
+    $(".currentMonthlies").on("click", function() {
         const innerText = event.target.innerText.split(" ");
         innerText.splice(2, 2);
-        console.log(innerText);
-        //ajax request using params sent from here
     });
 
-    // set calendar to match month
+    // set calendar to match month name
     $(".datepicker").datepicker({
         prevText: '<i class="fa fa-fw fa-angle-left"></i>',
         nextText: '<i class="fa fa-fw fa-angle-right"></i>'
     });
+
     let calMonth = $(".month").text();
 
     switch (calMonth) {
-        case "January 2020":
+        case "January":
             $(".datepicker").datepicker("setDate", "01/01/2020");
             $(".ui-datepicker-header").css(
                 "background-image",
                 "url(../assets/jan.jpg)"
             );
             break;
-        case "February 2020":
+        case "February":
             $(".datepicker").datepicker("setDate", "02/01/2020");
             $(".ui-datepicker-header").css(
                 "background-image",
                 "url(../assets/feb.jpg)"
             );
             break;
-        case "March 2020":
+        case "March":
             $(".datepicker").datepicker("setDate", "03/01/2020");
             $(".ui-datepicker-header").css(
                 "background-image",
                 "url(../assets/march.jpg)"
             );
             break;
-        case "April 2020":
+        case "April":
             $(".datepicker").datepicker("setDate", "04/01/2020");
             $(".ui-datepicker-header").css(
                 "background-image",
                 "url(../assets/april.jpg)"
             );
             break;
-        case "May 2020":
+        case "May":
             $(".datepicker").datepicker("setDate", "05/01/2020");
             $(".ui-datepicker-header").css(
                 "background-image",
                 "url(../assets/may.jpg)"
             );
             break;
-        case "June 2020":
+        case "June":
             $(".datepicker").datepicker("setDate", "06/01/2020");
             $(".ui-datepicker-header").css(
                 "background-image",
                 "url(../assets/june.jpg)"
             );
             break;
-        case "July 2020":
+        case "July":
             $(".datepicker").datepicker("setDate", "07/01/2020");
             $(".ui-datepicker-header").css(
                 "background-image",
                 "url(../assets/july.jpg)"
             );
             break;
-        case "August 2020":
+        case "August":
             $(".datepicker").datepicker("setDate", "08/01/2020");
             $(".ui-datepicker-header").css(
                 "background-image",
                 "url(../assets/aug.jpg)"
             );
             break;
-        case "September 2020":
+        case "September":
             $(".datepicker").datepicker("setDate", "09/01/2020");
             $(".ui-datepicker-header").css(
                 "background-image",
                 "url(../assets/sept.jpg)"
             );
             break;
-        case "October 2020":
+        case "October":
             $(".datepicker").datepicker("setDate", "10/01/2020");
             $(".ui-datepicker-header").css(
                 "background-image",
                 "url(../assets/oct.jpg)"
             );
             break;
-        case "November 2020":
+        case "November":
             $(".datepicker").datepicker("setDate", "11/01/2020");
             $(".ui-datepicker-header").css(
                 "background-image",
                 "url(../assets/nov.jpg)"
             );
             break;
-        case "December 2020":
+        case "December":
             $(".datepicker").datepicker("setDate", "12/01/2020");
             $(".ui-datepicker-header").css(
                 "background-image",
@@ -153,46 +173,13 @@ $('textarea').change(function(e){
             );
             break;
     }
-    // $('.currentMonthlies').on("click", function(e){
-    //     console.log(event.target.classList)
-
-    //         const innerText = event.target.innerText.split(' ')
-    //         innerText.splice(2,2)
-    //         console.log(innerText)
-    //        //ajax request using params sent from here
-    //        $.ajax('/' + innerText[0] + '/' + innerText[1], {
-    //         type: "GET",
-    //     }).then(function(e) {
-    //         window.location.href = '/' + innerText[0] + '/' + innerText[1]
-
-    //     });
-
-    // })
-
-    // ----------------------- SELECT------------------------
-    // necessary to render dropdown select menus correctly
-    $("select").formSelect();
-
-    const $currentDaily = $(".currentDailies");
-
-    // $(".datepicker").datepicker({
-    //     // required to hide arrow functionality
-    //     prevText: '<i class="fa fa-fw fa-angle-left"></i>',
-    //     nextText: '<i class="fa fa-fw fa-angle-right"></i>'
-    // });
 
     // ---------------- HABIT TRACKER --------------------
-    // add button to each cell
-    function habitDone() {
-        var button = $("<button>");
-        $(".cell").append(button);
-    }
 
     // add event listener to each button-cell
     // change cell color when clicked - loop through to listen to click - color change
 
-    $(".cell").click(function(event) {
-        // console.log("you clicked me")
+    $(".cell").click(function() {
         switch ($(this).css("background-color")) {
             case "rgb(253, 242, 242)":
                 $(this).css("background-color", "rgb(138, 56, 98)");
@@ -210,10 +197,12 @@ $('textarea').change(function(e){
     });
 
     // ---------------- MAIN LANDING PAGE -----------------
+
+    // functionality for daily tasks list
     const $newDaily = $(".newdaily");
 
-    $newDaily.on("click", function(e) {
-        var newDaily = {
+    $newDaily.on("click", function() {
+        let newDaily = {
             name: $("#textarea1")
                 .val()
                 .trim()
@@ -221,65 +210,55 @@ $('textarea').change(function(e){
         $.ajax("api/newdaily", {
             type: "POST",
             data: newDaily
-        }).then(function(e) {
+        }).then(function() {
             location.reload();
         });
-        // $.ajax("/api/newdaily", newDaily).then(function(e) {
-        //     console.log('yeet')
-        //     location.reload()
-
-        //     // ("/api/modifydaily/" + $dataId, {
-        //     //     type: "PUT",
-        //     //     data: $dataId
-        //     //   }).
-
-        // })
     });
 
+    // render index on main page
     $.get("/api/pages", function(data) {
         if (data.length !== 0) {
-            for (var i = 0; i < data.length; i++) {
-                var listItem = `<div class='row'><div class='col s6'><a href='${data[i].type}/${data[i].typeId}' class='monthlyli' data-id='${i}'>${data[i].name} </a></div><div class='col s6'>${data[i].id}</span></div></div>`;
-
-                // var listItem = `<div class='row'><div class='col s6'><li class='monthlyli' data-id='${i}'>${data[i].name} </li></div><div class='col s6'>${data[i].id}</span></div></div>`;
+            for (let i = 0; i < data.length; i++) {
+                let listItem = `<div class='row'><div class='col s6'><a href='${data[i].type}/${data[i].typeId}' class='monthlyli' data-id='${i}'>${data[i].name} </a></div><div class='col s6'>${data[i].id}</span></div></div>`;
                 $(".currentMonthlies").append(listItem);
             }
         }
     });
+    // render daily tasks on main page
     $.get("/api/alldailies", function(data) {
         if (data.length !== 0) {
-            for (var i = 0; i < data.length; i++) {
+            for (let i = 0; i < data.length; i++) {
                 if (data[i].completed == false) {
-                    var listItem = `<li class='dailyli' data-id='${i}'>${data[i].name}</li>`;
-
+                    let listItem = `<li class='dailyli' data-id='${i}'>${data[i].name}</li>`;
                     $(listItem).appendTo(".currentDailies");
                 } else if (data[i].completed == true) {
-                    var listItem = `<li class='dailyli' data-id='${i}' style='text-decoration:line-through;'>${data[i].name}</li>`;
-
+                    let listItem = `<li class='dailyli' data-id='${i}' style='text-decoration:line-through;'>${data[i].name}</li>`;
                     $(listItem).appendTo(".currentDailies");
                 }
             }
         }
 
-        $(".dailyli").on("click", function(e) {
+        // strikethrough finished task
+        $(".dailyli").on("click", function() {
             $(this).css("text-decoration", "line-through");
             const $dataId = parseInt($(this).attr("data-id")) + 1;
-            console.log("/api/modifydaily/" + $dataId);
-
             $.ajax("/api/modifydaily/" + $dataId, {
                 type: "PUT",
                 data: $dataId
-            }).then(function(e) {
-                console.log("test");
+            }).then(function() {
                 location.reload();
             });
         });
     });
 
+    // ------------------ MODALS ---------------------
+
+    // open new monthly spread modal
     $(".newMonthly").on("click", function(e) {
         e.preventDefault();
         $(".modal").modal();
     });
+    // save data from new monthly spread modal
     $(".submitButton").on("click", function(e) {
         e.preventDefault();
         const $select = $("select").val();
@@ -328,51 +307,37 @@ $('textarea').change(function(e){
         }
         $.ajax("api/newmonthly/" + chosen, {
             type: "POST"
-        }).then(function(e) {
+        }).then(function() {
             location.reload();
         });
     });
 
+    // open new collection modal
     $(".newCollection").on("click", function(e) {
         e.preventDefault();
         $(".modal").modal();
     });
+    // save data from new collection modal
     $(".submitButton2").on("click", function(e) {
         e.preventDefault();
         let array = [];
         const collect = $("#textarea-collect").val();
         array.push(collect);
         const colsub1 = $("#textarea-collect2").val();
-        if (!colsub1) {
-            // array.push(colsub1);
-            
-        } else {
+        if (colsub1) {
             array.push(colsub1);
-            // array.push(true);
         }
         const colsub2 = $("#textarea-collect3").val();
-        if (!colsub2) {
-            // array.push(colsub2);
-            
-        } else {
+        if (colsub2) {
             array.push(colsub2);
-            // array.push(true);
         }
         const colsub3 = $("#textarea-collect4").val();
-        if (!colsub3) {
-            // array.push(colsub3);
-            // array.push(false);
-        } else {
+        if (colsub3) {
             array.push(colsub3);
-            // array.push(true);
         }
         const colsub4 = $("#textarea-collect5").val();
-        if (!colsub4) {
-            // array.push(colsub4);
-            // array.push(false);
-        } else {
+        if (colsub4) {
             array.push(colsub4);
-            // array.push(true);
         }
         $.ajax("api/newcollection/" + array, {
             type: "POST"
@@ -380,10 +345,13 @@ $('textarea').change(function(e){
             location.reload();
         });
     });
+
+    // open new habit modal
     $(".newHabit").on("click", function(e) {
         e.preventDefault();
         $(".modal").modal();
     });
+    // save data from new habit modal
     $(".submitButton3").on("click", function(e) {
         e.preventDefault();
         const habSelect = $(".habSelect").val();
@@ -485,25 +453,4 @@ $('textarea').change(function(e){
             location.reload();
         });
     });
-    // ------------------- COLLECTIONS ---------------------
-    let mini1 = $("#mini1").text();
-    let mini2 = $("#mini2").text();
-    let mini3 = $("#mini3").text();
-    let mini4 = $("#mini4").text();
-    if (!mini1) {
-        $("#mini1").addClass("hide");
-        $("#area1").addClass("hide");
-    }
-    if (!mini2) {
-        $("#mini2").addClass("hide");
-        $("#collect-bottom2").addClass("hide");
-    }
-    if (!mini3) {
-        $("#mini3").addClass("hide");
-        $("#area2").addClass("hide");
-    }
-    if (!mini4) {
-        $("#mini4").addClass("hide");
-        $("#collect-bottom3").addClass("hide");
-    }
 });

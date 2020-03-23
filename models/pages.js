@@ -1,6 +1,5 @@
 module.exports = function(sequelize, DataTypes) {
-    var Pages = sequelize.define("Pages", {
-        // The email cannot be null, and must be a proper email before creation
+    const Pages = sequelize.define("Pages", {
         name: {
             type: DataTypes.STRING,
             allowNull: false
@@ -14,13 +13,5 @@ module.exports = function(sequelize, DataTypes) {
             allowNull: false
         }
     });
-
-    //    Pages.associate = function (models) {
-    //         Pages.belongsTo(models.bulletIndex, {
-    //             foreignKey: {
-    //                 allowNull: false
-    //             }
-    //         });
-    //     }
     return Pages;
 };

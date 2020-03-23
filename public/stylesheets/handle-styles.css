@@ -1,3 +1,4 @@
+/* all member related pages */
 html {
     min-width: 100%;
 }
@@ -10,6 +11,7 @@ body {
 a {
     color: #d66da3;
 }
+
 /* styling for home.handlebars */
 .main-row {
     margin-bottom: 15%;
@@ -42,6 +44,7 @@ a {
 #textarea-collect5 {
     margin-bottom: 3%;
 }
+
 /* styling for main.handlebars */
 #logo {
     padding-left: 3%;
@@ -52,6 +55,7 @@ a {
 #mobile-demo {
     padding-top: 3%;
 }
+
 /* styling for monthly.handlebars */
 .monthly-row {
     margin: 0% 6% 6% 6%;
@@ -132,6 +136,7 @@ a {
 textarea.materialize-textarea {
     margin-bottom: 0;
 }
+
 /* styling for collection.handlebars */
 .collection {
     font-size: 150px;
@@ -141,20 +146,13 @@ textarea.materialize-textarea {
     margin-top: 6%;
     border: none;
 }
-#collect-bottom {
-    margin-bottom: 30%;
-}
-#collect-bottom2,
-#collect-bottom4 {
-    margin-bottom: 60%;
-}
 .mini-collection {
     font-family: "Shadows Into Light", cursive;
     text-align: center;
     color: #58c7d6;
 }
-/* habit tracker styling */
 
+/* styling for habit tracker */
 .nav-wrapper {
     background-color: #8a3862;
 }
@@ -169,7 +167,6 @@ textarea.materialize-textarea {
     color: #3f818a;
     margin-top: 5%;
 }
-
 #sub-grid {
     display: grid;
     grid-template-columns: auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto;
@@ -183,7 +180,6 @@ textarea.materialize-textarea {
     bottom: 50px;
     margin: auto;
 }
-
 #sub-grid div.fixedToLeft {
     position: sticky;
     left: 0;
@@ -192,13 +188,12 @@ textarea.materialize-textarea {
 #sub-grid div.spancol {
     grid-column-start: 1;
     grid-column-end: 5;
-    background-color: rgb(250, 255, 203);
+    background-color: white;
     color: black;
 }
 #sub-grid div.nocolor {
     background-color: white;
 }
-
 div.cell {
     background-color: #fdf2f2;
     border: 10px black;
@@ -206,7 +201,6 @@ div.cell {
     color: #fdf2f2;
     font-display: none;
 }
-
 .cellNUM {
     text-align: center;
     background-color: white;
@@ -248,8 +242,5 @@ div.cell {
 @media screen and (max-width: 992px) {
     .monthly-columns {
         margin-top: 10%;
-    }
-    .collection-row {
-        margin-bottom: 50%;
     }
 }

@@ -1,17 +1,24 @@
-
 <h1 class="collection">{{postName}}</h1>
 
-
 <div class="row collection-row">
-  <div class="col s12 m12 l6">
+  <div class="col s12">
     {{#each subCat}}
-    <h2 class="mini-collection" id="mini1">{{subName}}</h2>
-    <div class="input-field col s12" id="area1">
-      <textarea id="{{id}}" class="materialize-textarea">{{subValue}}</textarea>
-      <label for="textarea3"></label>
+    <h2 class="mini-collection" id="mini{{id}}">{{subName}}</h2>
+    <div class="input-field col s12" id="area{{id}}">
+      <textarea id="{{id}}" class="materialize-textarea collect-textarea">{{subValue}}</textarea>
+      <label for="textarea{{id}}"></label>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
     </div>
     {{/each}}
-    <br>
+  </div>
+</div>
+{{!-- <br>
     <br>
     <br>
     <br>
@@ -30,6 +37,8 @@
     </div>
     {{/each}}
   </div>
+</div>
+<div class="row collection-row">
   <div class="col s12 m12 l6" id="collect-bottom">
     {{#each collect}}
     <h2 class="mini-collection" id="mini3">{{dataValues.sub3Name}}</h2>
@@ -59,4 +68,4 @@
     </div>
     {{/each}}
   </div>
-</div>
+</div> --}}
