@@ -77,13 +77,21 @@ app.get("/monthly", isAuthenticated, function(req, res) {
 });
 
 app.get("/dailyspread/:id", isAuthenticated, function(req, res) {
-    db.Posts.findAll({
+    db.Posts.findOne({
         where: {
             id: req.params.id
-        }
+        },
+        include: [db.Subcat]
     }).then(function(data) {
+        const subcatsArray = []
+        
+        data.Subcats.forEach(element => {
+            subcatsArray.push(element.dataValues)    
+        })
+        console.log(data.dataValues.Subcats)
         res.render("bullet-notes", {
-            collect: data
+            postName: data.dataValues.name,
+            subCat: subcatsArray
         });
     });
 });
