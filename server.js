@@ -97,16 +97,25 @@ app.get("/dailyspread/:id", isAuthenticated, function(req, res) {
 });
 
 app.get("/habit/:id", isAuthenticated, function(req, res) {
-    db.Journal.findAll({
+    db.HabitTracker.findOne({
         where: {
             id: req.params.id
-        }
+        },
+        include: [db.HabitBox]
     }).then(function(data) {
+        const habitBoxArray = []
+        data.HabitBoxes.forEach(element => {
+            habitBoxArray.push(element.dataValues)    
+        })
+        console.log(data)
         res.render("habits", {
-            habit: data
+            habit: data.dataValues.name,
+            habitBox: habitBoxArray
         });
     });
 });
+console.log()
+console.table()
 
 app.get("/dailyspread", isAuthenticated, function(req, res) {
     res.render("bullet-notes");

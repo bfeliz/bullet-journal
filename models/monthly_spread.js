@@ -21,6 +21,11 @@ module.exports = function (sequelize, DataTypes) {
                 allowNull: false
             }
         }) 
+        Monthly.hasMany(models.HabitTracker, {
+            foreignKey: {
+                allowNull: true
+            }
+        }) 
 }
 return Monthly;
 }

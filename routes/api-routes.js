@@ -103,10 +103,11 @@ module.exports = function (app) {
         db.Subcat.update({
             subValue: req.params.val
         },
-        {where: {id: req.params.id}
-    }).then(function (data) {
-        res.json(data);
-    }).catch(err => console.log(err))
+            {
+                where: { id: req.params.id }
+            }).then(function (data) {
+                res.json(data);
+            }).catch(err => console.log(err))
     });
 
 
@@ -147,7 +148,7 @@ module.exports = function (app) {
 
 
     app.post("/api/newcollection/:collect", async function (req, res) {
-        try{
+        try {
             let test = req.params.collect;
             let finalArray = test.split(",");
             // const postName = postCreate(finalArray)
@@ -159,7 +160,7 @@ module.exports = function (app) {
             // await plop
             // console.log(plop)
         }
-        catch(err) {console.log(err)}
+        catch (err) { console.log(err) }
 
 
 
@@ -168,51 +169,52 @@ module.exports = function (app) {
 
 
 
-            
-            // const pageCreate = await pageCreatez(postName)
-            // const findData = await findDataz(postName)
-            // await createRest(findData, finalArray);
-        
-        
 
-         async function postCreate(data) {
-                try {
-            const gerb = await db.Posts.create({
-                name: data[0]
-            })
-            return data[0]
-        } catch(err){
-            console.log(err)
+        // const pageCreate = await pageCreatez(postName)
+        // const findData = await findDataz(postName)
+        // await createRest(findData, finalArray);
+
+
+
+        async function postCreate(data) {
+            try {
+                const gerb = await db.Posts.create({
+                    name: data[0]
+                })
+                return data[0]
+            } catch (err) {
+                console.log(err)
+            }
+
         }
-            
-        }
-        async function pageCreatez(data){
+        async function pageCreatez(data) {
             console.log(data)
             try {
-               
-           const gerb2 =  db.Pages.create({
-                name: data.dataValues.name + " " + "Collection",
-                type: "dailyspread",
-                typeId: data.dataValues.id
 
-        })
-        return gerb2
-    } catch(err) {console.log(err)}
-    }
-        async function findDataz(a){
-            try{
-            const gerb3 = db.Posts.findOne(
-                {where: {
-                name: a,
-            }
-        })
-        return gerb3
-        } catch(err){console.log(err)}
+                const gerb2 = db.Pages.create({
+                    name: data.dataValues.name + " " + "Collection",
+                    type: "dailyspread",
+                    typeId: data.dataValues.id
+
+                })
+                return gerb2
+            } catch (err) { console.log(err) }
+        }
+        async function findDataz(a) {
+            try {
+                const gerb3 = db.Posts.findOne(
+                    {
+                        where: {
+                            name: a,
+                        }
+                    })
+                return gerb3
+            } catch (err) { console.log(err) }
         }
 
 
         function createRest(data, array) {
-                for (let i = 1; i < array.length; i++) {
+            for (let i = 1; i < array.length; i++) {
                 db.Subcat.create({
                     PostId: data.dataValues.id,
                     subName: array[i]
@@ -223,38 +225,146 @@ module.exports = function (app) {
     })
 
 
-app.post("/api/newhabit/:habit", async function (req, res) {
-    try {
-        let hab = req.params.habit;
-        let habArray = hab.split(",");
-        await habCreate(habArray);
-    } catch (err) {
-        console.log(err);
-    }
+    app.post("/api/newhabit/:habit", async function (req, res) {
+        try {
+            let hab = req.params.habit;
+            let habArray = hab.split(",");
+            // const postName = postCreate(finalArray)
+            const habTrack = await habitTrackerCreate(habArray)
+            const trackerFind = await findDataz(habArray)
+            const promiseReturned = await pageCreatorz(trackerFind)
+            const habcats = await habitCatCreate(habArray, trackerFind)
+            const habCatData = await findHabitCat(trackerFind)
+            const makinBoxes = await createBoxesForCats(habCatData)
+          
+                
+           
+            // const postName = await postCreate(habArray)
+            // const hoops = makeDates(postName)
 
-    function habCreate(data) {
-        db.Journal.create({
-            name: data[0],
-            hab1Name: data[1],
-            hab2Name: data[2],
-            hab3Name: data[3],
-            hab4Name: data[4],
-            hab5Name: data[5],
-            hab6Name: data[6],
-            hab7Name: data[7],
-            hab8Name: data[8],
-            hab9Name: data[9]
-        })
-            .then(function (answers) {
-                db.Pages.create({
-                    name: answers.dataValues.name + " " + "Habit Tracker",
-                    type: "habit",
-                    typeId: answers.dataValues.id
-                });
-                res.json(answers);
+            res.render("habits", {
+
             })
-            .catch(err => console.log(err));
-    }
-});
+            // await plop
+            // console.log(plop)
+        }
+        catch (err) { console.log(err) }
+
+        function habitTrackerCreate(month) {
+            db.HabitTracker.create({
+                name: month[0]
+            })
+            return
+        }
+
+        function habitCatCreate(habArray, monthFindRequest) {
+            for (let i = 1; i < habArray.length; i++) {
+                if (habArray[i] != '')
+                    db.HabitCat.create({
+                        category: habArray[i],
+                        HabitTrackerId: monthFindRequest.dataValues.id
+
+                    })
+                    return
+
+            }
+        }
+
+
+         function findDataz(a) {
+            try {
+                const gerb3 = db.HabitTracker.findOne(
+                    {
+                        where: {
+                            name: a[0],
+                        }
+                    })
+                return gerb3
+            } catch (err) { console.log(err) }
+        }
+
+         function pageCreatorz(data) {
+            try {
+
+                const gerb2 = db.Pages.create({
+                    name: data.dataValues.name + " " + "Habit Tracker",
+                    type: "habit",
+                    typeId: data.dataValues.id
+
+                })
+                return gerb2
+        
+            } catch (err) { console.log(err) }
+        }
+        //  function findDataz(arr) {
+        //     try {
+        //         const gerb3 = db.HabitTracker.findOne(
+        //             {
+        //                 where: {
+        //                     name: arr[0],
+        //                 }
+        //             })
+        //         return gerb3
+        //     } catch (err) { console.log(err) }
+        // }
+
+        function findHabitCat(data){
+            const datareturn = db.HabitCat.findAll({
+                where: {
+                    HabitTrackerId: data.dataValues.id
+                }
+            })
+            return datareturn
+        }
+
+
+        function createBoxesForCats(data) {
+            for (let index = 1; index < 32; index++) {
+                data.forEach(element => {
+                db.HabitBox.create({
+                    HabitCatId: element.dataValues.id,
+                    dayofmonth: index
+                })
+            })
+        }
+                
+          
+
+        };
+    })
 }
+    // try {
+    //     let hab = req.params.habit;
+    //     let habArray = hab.split(",");
+    //     console.log(habArray)
+    //     await habCreate(habArray);
+    // } catch (err) {
+    //     console.log(err);
+    // }
+
+    // function habCreate(data) {
+    //     db.HabitTracker.create({
+    //         name: data[0],
+    //         monthlyId: 
+    //         // hab1Name: data[1],
+    //         // hab2Name: data[2],
+    //         // hab3Name: data[3],
+    //         // hab4Name: data[4],
+    //         // hab5Name: data[5],
+    //         // hab6Name: data[6],
+    //         // hab7Name: data[7],
+    //         // hab8Name: data[8],
+    //         // hab9Name: data[9]
+    //     })
+    //         .then(function (answers) {
+    //             db.Pages.create({
+    //                 name: answers.dataValues.name + " " + "Habit Tracker",
+    //                 type: "habit",
+    //                 typeId: answers.dataValues.id
+    //             });
+    //             res.json(answers);
+    //         })
+    //         .catch(err => console.log(err));
+    // }
+
 
