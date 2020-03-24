@@ -199,6 +199,13 @@ div.cell {
     color: #fdf2f2;
     font-display: none;
 }
+div.cell[value="true"] {
+    background-color: rgb(138, 56, 98);
+    border: 10px black;
+    padding: 5px;
+    color: rgb(138, 56, 98);
+    font-display: none;
+}
 .cellNUM {
     text-align: center;
     background-color: white;
