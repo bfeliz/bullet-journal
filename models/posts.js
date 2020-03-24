@@ -2,8 +2,8 @@ module.exports = function(sequelize, DataTypes) {
     const Posts = sequelize.define("Posts", {
         name: {
             type: DataTypes.STRING,
-            allowNull: false,
-            unique: true
+            allowNull: false
+            // unique: true
         }
     });
     Posts.associate = function(models) {

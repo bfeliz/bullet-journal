@@ -2,8 +2,8 @@ module.exports = function(sequelize, DataTypes) {
     const Journal = sequelize.define("Journal", {
         name: {
             type: DataTypes.STRING,
-            allowNull: false,
-            unique: true
+            allowNull: false
+            // unique: true
         },
         hab1Name: {
             type: DataTypes.STRING,
