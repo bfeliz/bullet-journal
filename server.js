@@ -10,9 +10,9 @@ const db = require("./models");
 
 const app = express();
 
-const morgan = require("morgan");
+// const morgan = require("morgan");
 
-app.use(morgan("combined"));
+// app.use(morgan("combined"));
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
@@ -80,13 +80,27 @@ app.get("/dailyspread/:id", isAuthenticated, function(req, res) {
 
 // render chosen habit trackers
 app.get("/habit/:id", isAuthenticated, function(req, res) {
-    db.Journal.findAll({
+    db.HabitTracker.findOne({
         where: {
             id: req.params.id
         }
     }).then(function(data) {
-        res.render("habits", {
-            habit: data
+        db.HabitCat.findAll({
+            where: {
+                HabitTrackerId: data.dataValues.id
+            }
+        }).then(function(data2) {
+            db.HabitBox.findAll({
+                where: {
+                    createdAt: data2[0].dataValues.createdAt
+                }
+            }).then(function(data3) {
+                res.render("habits", {
+                    month: data.dataValues,
+                    habits: data2,
+                    boxId: data3
+                });
+            });
         });
     });
 });

@@ -105,6 +105,20 @@ module.exports = function(app) {
             .catch(err => console.log(err));
     });
 
+    // modify habit tracker
+    app.put("/api/modifyhabit/:id", function(req, res) {
+        db.HabitBox.update(
+            {
+                value: 1
+            },
+            {
+                where: { id: req.params.id }
+            }
+        ).then(function(data) {
+            res.json(data);
+        });
+    });
+
     // save collection items
     app.put("/api/saveCollectionItem/:id/:val", function(req, res) {
         db.Subcat.update(
@@ -223,34 +237,85 @@ module.exports = function(app) {
         try {
             let hab = req.params.habit;
             let habArray = hab.split(",");
-            await habCreate(habArray);
+
+            await habitTrackerCreate(habArray);
+            const trackerFind = await findDataz(habArray);
+            await pageCreatorz(trackerFind);
+            await habitCatCreate(habArray, trackerFind);
+            const habCatData = await findHabitCat(trackerFind);
+            await createBoxesForCats(habCatData);
         } catch (err) {
             console.log(err);
         }
 
-        function habCreate(data) {
-            db.Journal.create({
-                name: data[0],
-                hab1Name: data[1],
-                hab2Name: data[2],
-                hab3Name: data[3],
-                hab4Name: data[4],
-                hab5Name: data[5],
-                hab6Name: data[6],
-                hab7Name: data[7],
-                hab8Name: data[8],
-                hab9Name: data[9]
-            })
-                .then(function(answers) {
-                    db.Pages.create({
-                        name: answers.dataValues.name + " " + "Habit Tracker",
-                        type: "habit",
-                        typeId: answers.dataValues.id,
-                        UserId: req.user.id
-                    });
-                    res.json(answers);
+        function habitTrackerCreate(month) {
+            return db.HabitTracker.create({
+                name: month[0],
+                UserId: req.user.id
+            });
+        }
+
+        function habitCatCreate(habArray, trackerId) {
+            habArray.shift();
+
+            const arr = habArray
+                .filter(function(habits) {
+                    return habits != "";
                 })
-                .catch(err => console.log(err));
+                .map(element =>
+                    db.HabitCat.create({
+                        category: element,
+                        HabitTrackerId: trackerId.dataValues.id
+                    })
+                );
+            return Promise.all(arr);
+        }
+
+        function findDataz(a) {
+            try {
+                const gerb3 = db.HabitTracker.findOne({
+                    where: {
+                        name: a[0]
+                    }
+                });
+                return gerb3;
+            } catch (err) {
+                console.log(err);
+            }
+        }
+
+        function pageCreatorz(data) {
+            try {
+                const gerb2 = db.Pages.create({
+                    name: data.dataValues.name + " " + "Habit Tracker",
+                    type: "habit",
+                    typeId: data.dataValues.id,
+                    UserId: req.user.id
+                });
+                return gerb2;
+            } catch (err) {
+                console.log(err);
+            }
+        }
+
+        function findHabitCat(data) {
+            const datareturn = db.HabitCat.findAll({
+                where: {
+                    HabitTrackerId: data.dataValues.id
+                }
+            });
+            return datareturn;
+        }
+
+        function createBoxesForCats(data) {
+            for (let index = 1; index < 32; index++) {
+                data.forEach(element => {
+                    db.HabitBox.create({
+                        HabitCatId: element.dataValues.id,
+                        dayofmonth: index
+                    });
+                });
+            }
         }
     });
 };

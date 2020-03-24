@@ -179,20 +179,21 @@ $(document).ready(function() {
     // add event listener to each button-cell
     // change cell color when clicked - loop through to listen to click - color change
 
-    $(".cell").click(function() {
-        switch ($(this).css("background-color")) {
-            case "rgb(253, 242, 242)":
-                $(this).css("background-color", "rgb(138, 56, 98)");
-                $(this).css("color", "rgb(138,56,98)");
-                $(this).attr("value", true);
-                break;
+    $(".cell").click(function(e) {
+        e.preventDefault();
+        let habBox = $(this).attr("value", false);
+        if (habBox) {
+            $(this).css("background-color", "rgb(138, 56, 98)");
+            $(this).css("color", "rgb(138,56,98)");
+            $(this).attr("value", true);
+            const boxId = parseInt($(this).attr("data-id"));
 
-            // if purple turn pink
-            case "rgb(138, 56, 98)":
-                $(this).css("background-color", "rgb(253, 242, 242)");
-                $(this).css("color", "rgb(253, 242, 242)");
-                $(this).attr("value", false);
-                break;
+            $.ajax("/api/modifyhabit/" + boxId, {
+                type: "PUT",
+                data: boxId
+            }).then(function() {
+                console.log("test");
+            });
         }
     });
 
@@ -350,7 +351,12 @@ $(document).ready(function() {
     $(".newHabit").on("click", function(e) {
         e.preventDefault();
         $(".modal").modal();
+        $(".submitButton3").addClass("disabled");
+        $("#textarea-habit8").on("click", function() {
+            $(".submitButton3").removeClass("disabled");
+        });
     });
+
     // save data from new habit modal
     $(".submitButton3").on("click", function(e) {
         e.preventDefault();
@@ -400,51 +406,35 @@ $(document).ready(function() {
         }
         habArray.push(habitMonth);
         const hab1 = $("#textarea-habit1").val();
-        if (!hab1) {
-            habArray.push(hab1);
-        } else {
+        if (hab1) {
             habArray.push(hab1);
         }
         const hab2 = $("#textarea-habit2").val();
-        if (!hab2) {
-            habArray.push(hab2);
-        } else {
+        if (hab2) {
             habArray.push(hab2);
         }
         const hab3 = $("#textarea-habit3").val();
-        if (!hab3) {
-            habArray.push(hab3);
-        } else {
+        if (hab3) {
             habArray.push(hab3);
         }
         const hab4 = $("#textarea-habit4").val();
-        if (!hab4) {
-            habArray.push(hab4);
-        } else {
+        if (hab4) {
             habArray.push(hab4);
         }
         const hab5 = $("#textarea-habit5").val();
-        if (!hab5) {
-            habArray.push(hab5);
-        } else {
+        if (hab5) {
             habArray.push(hab5);
         }
         const hab6 = $("#textarea-habit6").val();
-        if (!hab6) {
-            habArray.push(hab6);
-        } else {
+        if (hab6) {
             habArray.push(hab6);
         }
         const hab7 = $("#textarea-habit7").val();
-        if (!hab7) {
-            habArray.push(hab7);
-        } else {
+        if (hab7) {
             habArray.push(hab7);
         }
         const hab8 = $("#textarea-habit8").val();
-        if (!hab8) {
-            habArray.push(hab8);
-        } else {
+        if (hab8) {
             habArray.push(hab8);
         }
         $.ajax("api/newhabit/" + habArray, {
