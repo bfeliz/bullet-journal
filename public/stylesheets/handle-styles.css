@@ -160,6 +160,9 @@ textarea.materialize-textarea {
 .cellNUM {
     color: black;
 }
+.spancol[value="true"] {
+    background-color: white;
+}
 #HabitTitle {
     font-size: 120px;
     font-family: "Akronim", cursive;

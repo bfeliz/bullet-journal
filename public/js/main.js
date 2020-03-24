@@ -181,7 +181,7 @@ $(document).ready(function() {
 
     $(".cell").click(function(e) {
         e.preventDefault();
-        let habBox = $(this).attr("value", false);
+        let habBox = $(this).attr("value");
         if (habBox) {
             $(this).css("background-color", "rgb(138, 56, 98)");
             $(this).css("color", "rgb(138,56,98)");
@@ -191,9 +191,7 @@ $(document).ready(function() {
             $.ajax("/api/modifyhabit/" + boxId, {
                 type: "PUT",
                 data: boxId
-            }).then(function() {
-                console.log("test");
-            });
+            }).then(function() {});
         }
     });
 
@@ -243,7 +241,6 @@ $(document).ready(function() {
         $(".dailyli").on("click", function() {
             $(this).css("text-decoration", "line-through");
             const $dataId = parseInt($(this).attr("data-id"));
-            console.log($dataId);
             $.ajax("/api/modifydaily/" + $dataId, {
                 type: "PUT",
                 data: $dataId
