@@ -153,20 +153,29 @@ module.exports = function(app) {
                     type: "monthly",
                     typeId: answers.dataValues.id,
                     UserId: req.user.id
+                }).then(function() {
+                    const thisYear = moment().get("year");
+                    const daysInChosenMonth = moment()
+                        .month(req.params.chosen)
+                        .format("M");
+                    const daysInMonth = moment(
+                        `${thisYear}-${daysInChosenMonth}`,
+                        "YYYY-MM"
+                    ).daysInMonth();
+                    postTasks();
+                    async function postTasks() {
+                        try {
+                            for (let i = 1; i <= daysInMonth; i++) {
+                                await db.Tasks.create({
+                                    date: i,
+                                    MonthlyId: answers.dataValues.id
+                                }).catch(err => console.log(err));
+                            }
+                        } catch (err) {
+                            console.log(err);
+                        }
+                    }
                 });
-                const daysInChosenMonth = moment()
-                    .month(req.params.chosen)
-                    .format("M");
-                const daysInMonth = moment(
-                    `2020-${daysInChosenMonth}`,
-                    "YYYY-MM"
-                ).daysInMonth();
-                for (let i = 1; i < daysInMonth + 1; i++) {
-                    db.Tasks.create({
-                        date: i,
-                        MonthlyId: answers.dataValues.id
-                    }).catch(err => console.log(err));
-                }
             });
         }
     });
