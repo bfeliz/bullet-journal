@@ -8,13 +8,11 @@ The user creates an account with an email and password, then they are presented 
 
 The user can then add tasks/goals to the different sections in the journal that are then saved onto an index page. The user can add tasks/goals by day or month and also add habits to a monthly habit tracker where they can keep daily track of habit completion.
 
-## UI Mockup
+## [Try it yourself!](https://personal-bullet-journal.herokuapp.com/)
 
-Application overview [here](https://xd.adobe.com/view/8707e389-02ff-474e-77cb-9ee294cdc72c-f136/)
-
-## Try it yourself!
-
-Click [here](https://personal-bullet-journal.herokuapp.com/) for project demo.
+If you don't want to sign up, use the following to log in:<br>
+Username: test@test.com<br>
+Password: test<br>
 
 The following image shows a glimpse of the application:
 
@@ -22,7 +20,7 @@ The following image shows a glimpse of the application:
 
 ## Getting Started
 
-Application runs in browser.
+Application runs in browser, no installation or download needed.
 
 ## Built With
 
@@ -47,4 +45,4 @@ See commit history [here](https://github.com/bfeliz/bullet-journal/graphs/contri
 
 ## Planned Updates
 
-Future updates would include making the app more user friendly by having a personalized welcome page for the user, ability to upload picture events, reminders (doctor appointment, flight schedule, etc.), archive old monthly spreads/collections/habits, ability to handwrite, and ability to share website (referral).
+Future updates would include having a personalized welcome page for the user, ability to upload picture events, reminders (doctor appointment, flight schedule, etc.), archive old monthly spreads/collections/habits, ability to handwrite, and ability to share website (referral).
