@@ -244,6 +244,7 @@ module.exports = function(app) {
             await habitCatCreate(habArray, trackerFind);
             const habCatData = await findHabitCat(trackerFind);
             await createBoxesForCats(habCatData);
+            res.render("habits");
         } catch (err) {
             console.log(err);
         }
