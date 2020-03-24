@@ -2,8 +2,8 @@ module.exports = function(sequelize, DataTypes) {
     const bulletIndex = sequelize.define("bulletIndex", {
         name: {
             type: DataTypes.STRING,
-            allowNull: false,
-            unique: true
+            allowNull: false
+            // unique: true
         }
     });
 
